@@ -1,10 +1,10 @@
 import { Schema } from 'mongoose';
 import { createSeedModel } from 'mongoose-plugin-seed';
-import seed from './todo.seed';
-import { emitter } from './todo.socket';
+import seed from './task.seed';
+import { emitter } from './task.socket';
 
-const TodoSchema = new Schema({
-  text: {
+const TaskSchema = new Schema({
+  name: {
     type: String,
     required: true,
     trim: true
@@ -13,23 +13,23 @@ const TodoSchema = new Schema({
     type: Boolean,
     default: false
   },
-  user: {
+  course: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'Course',
     required: true
   }
 });
 
-TodoSchema.post('save', doc => {
+TaskSchema.post('save', doc => {
   emitter.emit('save', doc);
 });
 
-TodoSchema.post('findOneAndUpdate', doc => {
+TaskSchema.post('findOneAndUpdate', doc => {
   emitter.emit('findOneAndUpdate', doc);
 });
 
-TodoSchema.post('findOneAndRemove', doc => {
+TaskSchema.post('findOneAndRemove', doc => {
   emitter.emit('findOneAndRemove', doc);
 });
 
-export default createSeedModel('Todo', TodoSchema, seed);
+export default createSeedModel('Task', TaskSchema, seed);

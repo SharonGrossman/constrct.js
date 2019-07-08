@@ -3,7 +3,8 @@ import socketioJwt from 'socketio-jwt';
 import _ from 'lodash';
 
 // inject:socket-imports
-import todoSocket from '../api/todo/todo.socket';
+import courseSocket from '../api/course/course.socket';
+import taskSocket from '../api/task/task.socket';
 
 export default server => {
   const socketServer = socketio(server, {
@@ -25,5 +26,6 @@ export default server => {
       .filter(({ decoded_token: { _id } }) => filter(_id));
 
   // inject:socket-usage
-  todoSocket(getSockets);
+  courseSocket(getSockets);
+  taskSocket(getSockets);
 };
