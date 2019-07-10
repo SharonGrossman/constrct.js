@@ -1,3 +1,9 @@
 import React from 'react';
 
-export default ({ course: { name } }) => <span>{name}</span>;
+export default ({
+  match: {
+    params: { id }
+  }
+}) => {
+  return <span>{`hi course ${id}`}</span>;
+};

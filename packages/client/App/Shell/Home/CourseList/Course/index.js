@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Card, CardContent, CardActionArea, CardMedia, Typography, Box } from '@material-ui/core';
 import { LaptopChromebook } from '@material-ui/icons';
 import { useTheme } from '@material-ui/styles';
+import { withRouter } from 'react-router';
 
 const CourseCard = styled(Card)`
   max-width: 345px;
@@ -14,7 +15,11 @@ const CenterBox = ({ children, direction = 'row' }) => (
   </Box>
 );
 
-export default ({ course: { name, description } }) => {
+const Course = ({ course: { name, description, _id: id }, history }) => {
+  const handleClick = () => {
+    history.push(`/course/${id}`);
+  };
+
   const {
     palette: {
       secondary: { main }
@@ -28,7 +33,7 @@ export default ({ course: { name, description } }) => {
   return (
     <Box p={2} display={'flex'} justifyContent={'center'} alignItems={'center'} width={'25%'} height={'240px'}>
       <CourseCard>
-        <CardActionArea>
+        <CardActionArea onClick={handleClick}>
           <CardMediaWithBackground>
             <CenterBox>
               <LaptopChromebook />
@@ -47,3 +52,5 @@ export default ({ course: { name, description } }) => {
     </Box>
   );
 };
+
+export default withRouter(Course);

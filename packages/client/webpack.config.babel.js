@@ -21,7 +21,8 @@ export default env => {
     output: {
       path: resolve(__dirname, './dist/src'),
       filename: './[name].[hash].js',
-      chunkFilename: './[name].[chunkhash].js'
+      chunkFilename: './[name].[chunkhash].js',
+      publicPath: '/'
     },
     module: {
       rules: [
