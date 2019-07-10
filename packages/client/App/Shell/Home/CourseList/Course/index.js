@@ -2,27 +2,28 @@ import React from 'react';
 import styled from 'styled-components';
 import { Card, CardContent, CardActionArea, CardMedia, Typography, Box } from '@material-ui/core';
 import { LaptopChromebook } from '@material-ui/icons';
-import {useTheme} from '@material-ui/styles';
+import { useTheme } from '@material-ui/styles';
 
 const CourseCard = styled(Card)`
-max-width: 345px;
+  max-width: 345px;
 `;
 
-const CenterBox = ({ children, direction = 'row'}) => (
+const CenterBox = ({ children, direction = 'row' }) => (
   <Box p={1} flexDirection={direction} display={'flex'} justifyContent={'center'} alignItems={'center'} width={'100%'}>
     {children}
   </Box>
 );
 
-
-
-export default ({ course: { name } }) => {
-  const {palette: {secondary: {main}}} = useTheme();
+export default ({ course: { name, description } }) => {
+  const {
+    palette: {
+      secondary: { main }
+    }
+  } = useTheme();
 
   const CardMediaWithBackground = styled(CardMedia)`
-  background-color: ${main};
-`;
-
+    background-color: ${main};
+  `;
 
   return (
     <Box p={2} display={'flex'} justifyContent={'center'} alignItems={'center'} width={'25%'} height={'240px'}>
@@ -30,17 +31,14 @@ export default ({ course: { name } }) => {
         <CardActionArea>
           <CardMediaWithBackground>
             <CenterBox>
-              <LaptopChromebook/>
+              <LaptopChromebook />
             </CenterBox>
           </CardMediaWithBackground>
           <CardContent>
             <CenterBox direction={'column'}>
-              <Typography variant={'h6'}>
-                {name}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                across all continents except Antarctica
+              <Typography variant={'h6'}>{name}</Typography>
+              <Typography variant={'body2'} color={'textSecondary'} component={'p'}>
+                {description}
               </Typography>
             </CenterBox>
           </CardContent>

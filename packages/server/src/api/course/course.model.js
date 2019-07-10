@@ -9,10 +9,7 @@ const CourseSchema = new Schema({
     required: true,
     trim: true
   },
-  completed: {
-    type: Boolean,
-    default: false
-  },
+  description: String,
   tasks: [
     {
       type: Schema.Types.ObjectId,
@@ -21,8 +18,7 @@ const CourseSchema = new Schema({
   ],
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+    ref: 'User'
   }
 });
 

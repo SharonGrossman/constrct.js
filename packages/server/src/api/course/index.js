@@ -7,7 +7,7 @@ const router = new AsyncRouter();
 
 router.param('id', objectId);
 
-router.get('/', isAuthenticated(), controller.index);
+router.get('/', controller.index);
 router.post('/', isAuthenticated(), controller.create);
 router.get('/:id', isAuthenticated(), controller.show);
 router.put('/:id', isAuthenticated(), controller.update);

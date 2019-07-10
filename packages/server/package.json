@@ -11,7 +11,7 @@
 		"lint": "eslint src --fix",
 		"precommit": "lint-staged",
 		"commitmsg": "commitlint -e",
-		"dev": "nodemon --watch server --exec \"babel-node\" src/app.js",
+		"dev": "nodemon",
 		"prod": "npm run build && node dist/app.js"
 	},
 	"keywords": [],

@@ -1,5 +1,5 @@
 .idea
 node_modules
-.cache
 dist
-lerna-debug.log
+*.log
+.env
