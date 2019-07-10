@@ -1,5 +1,6 @@
 import React from 'react';
-import { Router, Switch, Redirect, Route } from 'react-router-dom';
+import { Router, Switch, Redirect } from 'react-router-dom';
+import LayoutWrappedRoute from './App/components/LayoutWrappedRoute';
 import App from './App';
 import Home from './App/Shell/Home';
 import Shell from './App/Shell';
@@ -11,14 +12,10 @@ export default ({ history }) => (
   <Router history={history}>
     <App>
       <Switch>
-        <Shell>
-          <Route path="/" exact component={Home}/>
-        </Shell>
-        <Exterior>
-          <Route path="/login" exact component={Login}/>
-          <Route path="/register" exact component={Register}/>
-        </Exterior>
-        <Redirect to={'/'} from={'*'}/>
+        <LayoutWrappedRoute exact path={'/'} layout={Shell} component={Home} />
+        <LayoutWrappedRoute exact path={'/register'} layout={Exterior} component={Register} />
+        <LayoutWrappedRoute exact path={'/login'} layout={Exterior} component={Login} />
+        <Redirect to={'/'} from={'*'} />
       </Switch>
     </App>
   </Router>
