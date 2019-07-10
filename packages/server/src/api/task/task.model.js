@@ -9,15 +9,7 @@ const TaskSchema = new Schema({
     required: true,
     trim: true
   },
-  completed: {
-    type: Boolean,
-    default: false
-  },
-  course: {
-    type: Schema.Types.ObjectId,
-    ref: 'Course',
-    required: true
-  }
+  duration: String
 });
 
 TaskSchema.post('save', doc => {

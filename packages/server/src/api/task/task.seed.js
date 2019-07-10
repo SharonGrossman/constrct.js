@@ -1,11 +1,12 @@
-import Course from '../course/course.model';
-
 export default {
-  dependencies: [Course],
-  seed: ([course]) => [
+  seed: () => [
     {
       name: 'Cool Task',
-      course
+      duration: '2 Weeks'
+    },
+    {
+      name: 'Cool Task 2',
+      duration: '2 Days'
     }
   ]
 };

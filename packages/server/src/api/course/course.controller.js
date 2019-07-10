@@ -3,16 +3,16 @@ import _ from 'lodash';
 import Course from './course.model';
 import { emitter } from './course.socket';
 
-export const index = ({ user }) => Course.find({ user });
+export const index = () => Course.find();
 
-export const show = async ({ user: { _id }, params: { id } }) => {
-  const todo = await Course.findById(id);
+export const show = async ({ params: { id } }) => {
+  const course = await Course.findById(id).populate('tasks');
 
-  if (!todo || !todo.user.equals(_id)) {
+  if (!course) {
     throw createError(404);
   }
 
-  return todo;
+  return course;
 };
 
 export const create = async ({ user, body }, res) => {
