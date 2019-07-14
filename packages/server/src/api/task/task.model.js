@@ -9,7 +9,11 @@ const TaskSchema = new Schema({
     required: true,
     trim: true
   },
-  duration: String
+  duration: String,
+  course: {
+    ref: 'Course',
+    type: Schema.Types.ObjectId
+  }
 });
 
 TaskSchema.post('save', doc => {

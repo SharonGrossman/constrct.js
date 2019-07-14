@@ -1,12 +1,8 @@
-import Task from '../task/task.model';
-
 export default {
-  dependencies: [Task],
-  seed: ([tasks]) => [
+  seed: () => [
     {
       name: 'Web Development',
-      description: 'In this course you will learn HTML, CSS & Javascript. We will also cover AngularJS or React, MongoDB, Node and npm and architecturing a web application (SPA)',
-      tasks: [tasks, tasks]
+      description: 'In this course you will learn HTML, CSS & Javascript. We will also cover AngularJS or React, MongoDB, Node and npm and architecturing a web application (SPA)'
     },
     {
       name: 'Infrastructure',

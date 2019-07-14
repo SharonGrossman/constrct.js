@@ -1,22 +1,19 @@
 import React from 'react';
 import { Router, Switch, Redirect } from 'react-router-dom';
-import LayoutWrappedRoute from './App/components/LayoutWrappedRoute';
 import App from './App';
-import Home from './App/Shell/Home';
-import Shell from './App/Shell';
-import Exterior from './App/Exterior';
-import Login from './App/Exterior/Login';
-import Register from './App/Exterior/Register';
-import Course from './App/Shell/Course';
+import WrappedRoute from './App/components/WrappedRoute';
+import shellRoutes from './App/Shell/routes';
+import exteriorRoutes from './App/Exterior/routes';
+
+const routes = [...shellRoutes, ...exteriorRoutes];
 
 export default ({ history }) => (
   <Router history={history}>
     <App>
       <Switch>
-        <LayoutWrappedRoute exact path={'/'} layout={Shell} component={Home} />
-        <LayoutWrappedRoute exact path={'/course/:id'} layout={Shell} component={Course} />
-        <LayoutWrappedRoute exact path={'/register'} layout={Exterior} component={Register} />
-        <LayoutWrappedRoute exact path={'/login'} layout={Exterior} component={Login} />
+        {routes.map((route, index) => (
+          <WrappedRoute exact={true} key={index} {...route} />
+        ))}
         <Redirect to={'/'} from={'*'} />
       </Switch>
     </App>

@@ -6,7 +6,7 @@ import { emitter } from './course.socket';
 export const index = () => Course.find();
 
 export const show = async ({ params: { id } }) => {
-  const course = await Course.findById(id).populate('tasks');
+  const course = await Course.findById(id);
 
   if (!course) {
     throw createError(404);

@@ -27,7 +27,8 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "reflexbox": "^3.0.1",
-    "styled-components": "^4.2.0"
+    "styled-components": "^4.2.0",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",

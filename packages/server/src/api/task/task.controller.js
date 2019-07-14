@@ -1,19 +1,11 @@
 import createError from 'http-errors';
 import _ from 'lodash';
 import Task from './task.model';
-import { emitter } from './task.socket';
 
-export const index = ({ user }) => Task.find({ user });
+export const index = ({params: {id: course}}) => Task.find({ course });
+export const getAll = () => Task.find({});
 
-export const show = async ({ user: { _id }, params: { id } }) => {
-  const todo = await Task.findById(id);
-
-  if (!todo || !todo.user.equals(_id)) {
-    throw createError(404);
-  }
-
-  return todo;
-};
+export const show = async ({ params: { id } }) => Task.findById(id);
 
 export const create = async ({ user, body }, res) => {
   const data = _.pick(body, ['text']);

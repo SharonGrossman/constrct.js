@@ -10,12 +10,6 @@ const CourseSchema = new Schema({
     trim: true
   },
   description: String,
-  tasks: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Task'
-    }
-  ],
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User'

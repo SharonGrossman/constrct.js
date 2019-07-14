@@ -62,6 +62,5 @@ UserSchema.pre('save', function(next) {
 
 // Use promises
 UserSchema.methods.setPassword = pify(UserSchema.methods.setPassword);
-UserSchema.methods.authenticate = pify(UserSchema.methods.authenticate);
 
 export default createSeedModel('User', UserSchema, seed);

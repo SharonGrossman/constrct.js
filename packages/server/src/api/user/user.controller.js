@@ -1,6 +1,7 @@
 import createError from 'http-errors';
 import _ from 'lodash';
 import User from './user.model';
+import {signToken} from '../../auth/auth.service';
 
 export const index = () => User.find({});
 
@@ -11,6 +12,23 @@ export const show = async ({ params: { id } }) => {
     throw createError(404);
   }
 };
+
+export const create = async ({body}, res) => {
+  const data = _.pick(body, [
+    'name',
+    'email',
+    'password'
+  ]);
+
+  const user = await User.create({...data});
+
+  if (!user) {
+    throw createError(400);
+  }
+
+  return res.json({token: signToken(user._id)});
+};
+
 
 export const update = async ({ user, params: { id }, body }) => {
   if (!user._id.equals(id) && !user.admin) {
