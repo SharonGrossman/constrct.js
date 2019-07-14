@@ -1,16 +1,20 @@
 import React from 'react';
-import { AppBar, Box, Toolbar, Typography, Button } from '@material-ui/core';
-import { SchoolOutlined as Logo } from '@material-ui/icons';
+import { AppBar, Toolbar, Typography, IconButton, Tooltip } from '@material-ui/core';
+import { SchoolOutlined as Logo, ExitToApp as LogoutIcon } from '@material-ui/icons';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import { useAuth } from '../../Providers/AuthProvider';
 import { useUser } from '../../Providers/UserProvider';
+import RowContent from '../Layout/RowContent';
 
-const StyledLogo = styled(Logo)`
-  margin: 8px;
+const ClickableTitle = styled(Typography)`
+  cursor: pointer;
+`;
+const AcademyLogo = styled(Logo)`
+  margin: 5px;
 `;
 
-export default () => {
+const Header = ({ history }) => {
   const { clearAuth } = useAuth();
   const { authenticated } = useUser();
 
@@ -18,27 +22,31 @@ export default () => {
     clearAuth();
   };
 
+  const handleTitleClick = () => {
+    history.push('/');
+  };
+
   return (
     <AppBar color={'primary'}>
       <Toolbar variant={'dense'}>
-        <Box display={'flex'} width={'100%'} flexDirection={'row'}>
-          <Box display={'flex'} flexGrow={1} p={1} flexDirection={'row'}>
-            <StyledLogo />
-            <Typography variant={'h6'}>{'Academy'}</Typography>
-          </Box>
-          <Box display={'flex'} p={1} justifyContent={'flex-end'}>
-            {authenticated ? (
-              <Button onClick={handleLogout} color={'secondary'} variant={'contained'}>
-                Logout
-              </Button>
-            ) : (
-              <Button color={'secondary'} variant={'contained'} component={Link} to={'/login'}>
-                Sign In
-              </Button>
-            )}
-          </Box>
-        </Box>
+        <RowContent width={'100%'}>
+          <RowContent flexGrow={1} p={1} justifyContent={'start'} alignItems={'center'}>
+            <AcademyLogo />
+            <ClickableTitle onClick={handleTitleClick} variant={'h6'}>
+              {'Academy'}
+            </ClickableTitle>
+          </RowContent>
+          <RowContent p={1} justifyContent={'flex-end'}>
+            <Tooltip title={'Logout'}>
+              <IconButton onClick={handleLogout} color={'secondary'}>
+                <LogoutIcon />
+              </IconButton>
+            </Tooltip>
+          </RowContent>
+        </RowContent>
       </Toolbar>
     </AppBar>
   );
 };
+
+export default withRouter(Header);

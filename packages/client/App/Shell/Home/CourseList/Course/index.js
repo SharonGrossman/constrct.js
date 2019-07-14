@@ -1,19 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Card, CardContent, CardActionArea, CardMedia, Typography, Box } from '@material-ui/core';
+import { Card, CardContent, CardActionArea, CardMedia, Typography } from '@material-ui/core';
 import { LaptopChromebook } from '@material-ui/icons';
+import RowContent from '../../../../components/Layout/RowContent';
+import ColumnContent from '../../../../components/Layout/ColumnContent';
 import { useTheme } from '@material-ui/styles';
 import { withRouter } from 'react-router';
 
 const CourseCard = styled(Card)`
   max-width: 345px;
 `;
-
-const CenterBox = ({ children, direction = 'row' }) => (
-  <Box p={1} flexDirection={direction} display={'flex'} justifyContent={'center'} alignItems={'center'} width={'100%'}>
-    {children}
-  </Box>
-);
 
 const Course = ({ course: { name, description, _id: id }, history }) => {
   const handleClick = () => {
@@ -31,25 +27,25 @@ const Course = ({ course: { name, description, _id: id }, history }) => {
   `;
 
   return (
-    <Box p={2} display={'flex'} justifyContent={'center'} alignItems={'center'} width={'25%'} height={'240px'}>
+    <RowContent p={2} justifyContent={'center'} alignItems={'center'} width={'25%'} height={'240px'}>
       <CourseCard>
         <CardActionArea onClick={handleClick}>
           <CardMediaWithBackground>
-            <CenterBox>
+            <RowContent justifyContent={'center'} alignItems={'center'} width={'100%'}>
               <LaptopChromebook />
-            </CenterBox>
+            </RowContent>
           </CardMediaWithBackground>
           <CardContent>
-            <CenterBox direction={'column'}>
+            <ColumnContent justifyContent={'center'} alignItems={'center'} width={'100%'}>
               <Typography variant={'h6'}>{name}</Typography>
               <Typography variant={'body2'} color={'textSecondary'} component={'p'}>
                 {description}
               </Typography>
-            </CenterBox>
+            </ColumnContent>
           </CardContent>
         </CardActionArea>
       </CourseCard>
-    </Box>
+    </RowContent>
   );
 };
 

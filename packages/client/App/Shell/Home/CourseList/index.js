@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Course from './Course';
-import { Box } from '@material-ui/core';
+import RowContent from '../../../components/Layout/RowContent';
 import axios from 'axios';
 
 export default () => {
@@ -13,16 +13,10 @@ export default () => {
   }, []);
 
   return (
-    <Box
-      display={'flex'}
-      flexDirection={'row'}
-      justifyContent={'flex-start'}
-      alignItems={'flex-start'}
-      flexWrap={'wrap'}
-    >
+    <RowContent justifyContent={'flex-start'} alignItems={'flex-start'} flexWrap={'wrap'}>
       {courses.map(course => (
         <Course key={course._id} course={course} />
       ))}
-    </Box>
+    </RowContent>
   );
 };

@@ -1,9 +1,11 @@
 import React from 'react';
 import { Box, Typography } from '@material-ui/core';
 import styled from 'styled-components';
+import RowContent from '../components/Layout/RowContent';
+import ColumnContent from '../components/Layout/ColumnContent';
 import { SchoolOutlined } from '@material-ui/icons';
 
-const StyledBox = styled(Box)`
+const StyledColumnContent = styled(ColumnContent)`
   background-color: #336b9c;
 `;
 
@@ -12,13 +14,13 @@ const SchoolLogo = styled(SchoolOutlined)`
 `;
 
 export default ({ children }) => (
-  <Box display={'flex'} width={'100%'} flexDirection={'row'}>
-    <StyledBox flexDirection={'column'} display={'flex'} width={'50%'} justifyContent={'center'} alignItems={'center'}>
+  <RowContent width={'100%'}>
+    <StyledColumnContent width={'50%'} justifyContent={'center'} alignItems={'center'}>
       <SchoolLogo />
       <Typography variant={'h5'}>{'makmacademy'}</Typography>
-    </StyledBox>
-    <Box flexDirection={'column'} display={'flex'} width={'50%'} justifyContent={'center'} alignItems={'center'}>
+    </StyledColumnContent>
+    <ColumnContent width={'50%'} justifyContent={'center'} alignItems={'center'}>
       {children}
-    </Box>
-  </Box>
+    </ColumnContent>
+  </RowContent>
 );
