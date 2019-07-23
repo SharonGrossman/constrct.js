@@ -4,7 +4,6 @@ import { SchoolOutlined as Logo, ExitToApp as LogoutIcon } from '@material-ui/ic
 import styled from 'styled-components';
 import { withRouter } from 'react-router';
 import { useAuth } from '../../Providers/AuthProvider';
-import { useUser } from '../../Providers/UserProvider';
 import RowContent from '../Layout/RowContent';
 
 const ClickableTitle = styled(Typography)`
@@ -15,11 +14,10 @@ const AcademyLogo = styled(Logo)`
 `;
 
 const Header = ({ history }) => {
-  const { clearAuth } = useAuth();
-  const { authenticated } = useUser();
+  const { updateToken } = useAuth();
 
   const handleLogout = () => {
-    clearAuth();
+    updateToken(null);
   };
 
   const handleTitleClick = () => {

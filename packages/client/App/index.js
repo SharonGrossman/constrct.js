@@ -2,7 +2,7 @@ import React from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 import { Flex } from 'reflexbox';
-import AppProviders from './Providers';
+import {AuthProvider} from './Providers/AuthProvider';
 
 const theme = createMuiTheme({
   palette: {
@@ -16,11 +16,11 @@ const theme = createMuiTheme({
 });
 
 export default ({ children }) => (
-  <AppProviders>
-    <MuiThemeProvider theme={theme}>
-      <CssBaseline>
+  <MuiThemeProvider theme={theme}>
+    <CssBaseline>
+      <AuthProvider>
         <Flex auto>{children}</Flex>
-      </CssBaseline>
-    </MuiThemeProvider>
-  </AppProviders>
+      </AuthProvider>
+    </CssBaseline>
+  </MuiThemeProvider>
 );

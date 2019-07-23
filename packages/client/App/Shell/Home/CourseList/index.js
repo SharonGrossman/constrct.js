@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Course from './Course';
 import RowContent from '../../../components/Layout/RowContent';
-import axios from 'axios';
+import { instance } from '../../../Providers/AxiosProvider';
 
 export default () => {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/courses').then(({ data }) => {
+    instance.get('/courses').then(({ data }) => {
       setCourses(data);
     });
   }, []);

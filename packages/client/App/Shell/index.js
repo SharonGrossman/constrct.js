@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
 import ColumnContent from '../components/Layout/ColumnContent';
 import RowContent from '../components/Layout/RowContent';
-
 import Toolbar from '../components/Toolbar';
 
 export default memo(({ children }) => {

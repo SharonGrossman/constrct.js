@@ -1,10 +1,10 @@
-import React, { memo, useState } from 'react';
+import React  from 'react';
 import CourseList from './CourseList';
 import { Typography } from '@material-ui/core';
-import { useUser } from '../../Providers/UserProvider';
+import { useAuth } from '../../Providers/AuthProvider';
 
 export default () => {
-  const { user } = useUser();
+  const {user} = useAuth();
 
   return (
     <>

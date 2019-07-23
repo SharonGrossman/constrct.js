@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Box, List, ListItem, ListItemText, ListItemIcon, Checkbox } from '@material-ui/core';
+import { instance } from '../../Providers/AxiosProvider';
 
 export default ({
   match: {
@@ -12,7 +11,7 @@ export default ({
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`/api/tasks/${id}`).then(({ data }) => {
+    instance.get(`/tasks/${id}`).then(({ data }) => {
       setLoading(false);
       setTask(data);
     });
