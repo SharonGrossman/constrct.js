@@ -22,15 +22,3 @@ export const index = (req, res, next) => {
     res.json({ token: signToken(user._id) });
   })(req, res, next);
 };
-
-export const register = async ({ body }, res) => {
-  const data = _.pick(body, ['name', 'email', 'password']);
-
-  const user = await User.create({ ...data });
-
-  if (!user) {
-    throw createError(400);
-  }
-
-  return res.json({ token: signToken(user._id) });
-};

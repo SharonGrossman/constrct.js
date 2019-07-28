@@ -1,7 +1,7 @@
 import React from 'react';
 import { CircularProgress, Typography } from '@material-ui/core';
 import { Favorite } from '@material-ui/icons';
-import ColumnContent from '../Layout/ColumnContent';
+import { Column } from '../Layout';
 import styled from 'styled-components';
 
 const LargeCircularProgress = styled(CircularProgress)`
@@ -14,18 +14,18 @@ const SmallFavorite = styled(Favorite)`
   width: 0.8em !important;
 `;
 
-const MarkedBox = styled(ColumnContent)`
+const MarkedBox = styled(Column)`
   border-radius: 10px;
   border: 1px dotted black;
 `;
 
 export default () => (
-  <ColumnContent height={'100%'} width={'100%'} alignItems={'center'} justifyContent={'center'}>
+  <Column height={'100%'} width={'100%'} alignItems={'center'} justifyContent={'center'}>
     <LargeCircularProgress color={'secondary'} />
     <MarkedBox p={2} m={5} justifyContent={'center'} alignItems={'center'}>
       <Typography variant={'caption'}>
         {'Made with'} <SmallFavorite /> {'by Sharon Grossman'}
       </Typography>
     </MarkedBox>
-  </ColumnContent>
+  </Column>
 );

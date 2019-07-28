@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
-import { withRouter } from 'react-router';
-import { instance } from '../../Providers/AxiosProvider';
-import ColumnContent from '../../components/Layout/ColumnContent';
+import { List, ListItem, ListItemText } from '@material-ui/core';
+import { instance } from '../../services/axios.service';
+import { Column } from '../../components/Layout';
+import { push } from '../../services/history.service';
 
-const Course = ({
+export default ({
   match: {
-    params: { id },
-    path
-  },
-  history
+    params: { id }
+  }
 }) => {
   const [course, setCourse] = useState({});
   const [loading, setLoading] = useState(false);
@@ -27,11 +25,11 @@ const Course = ({
   }, []);
 
   const handleClick = id => {
-    history.push(`/task/${id}`);
+    push({ url: `/task/${id}` });
   };
 
   return (
-    <ColumnContent width={'100%'} height={'10%'}>
+    <Column width={'100%'} height={'10%'}>
       <List>
         {loading ? (
           <span>Loading!!!</span>
@@ -43,8 +41,6 @@ const Course = ({
           ))
         )}
       </List>
-    </ColumnContent>
+    </Column>
   );
 };
-
-export default withRouter(Course);

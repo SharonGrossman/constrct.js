@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { instance } from '../../Providers/AxiosProvider';
+import { instance } from '../../services/axios.service';
 
 export default ({
   match: {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Course from './Course';
-import RowContent from '../../../components/Layout/RowContent';
-import { instance } from '../../../Providers/AxiosProvider';
+import { Row } from '../../../components/Layout';
+import { instance } from '../../../services/axios.service';
 
 export default () => {
   const [courses, setCourses] = useState([]);
@@ -13,10 +13,10 @@ export default () => {
   }, []);
 
   return (
-    <RowContent justifyContent={'flex-start'} alignItems={'flex-start'} flexWrap={'wrap'}>
+    <Row justifyContent={'flex-start'} alignItems={'flex-start'} flexWrap={'wrap'}>
       {courses.map(course => (
         <Course key={course._id} course={course} />
       ))}
-    </RowContent>
+    </Row>
   );
 };

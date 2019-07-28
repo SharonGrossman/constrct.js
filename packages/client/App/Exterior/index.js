@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import RowContent from '../components/Layout/RowContent';
-import ColumnContent from '../components/Layout/ColumnContent';
+import { Row, Column } from '../components/Layout';
 
 const Video = styled.video`
   object-fit: cover;
@@ -14,12 +13,12 @@ const Video = styled.video`
 `;
 
 export default ({ children }) => (
-  <RowContent width={'100%'}>
+  <Row width={'100%'}>
     <Video loop autoPlay>
       <source src="../../assets/Words.mp4" />
     </Video>
-    <ColumnContent width={'100%'} justifyContent={'center'} alignItems={'center'}>
+    <Column width={'100%'} justifyContent={'center'} alignItems={'center'}>
       {children}
-    </ColumnContent>
-  </RowContent>
+    </Column>
+  </Row>
 );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import history from './history';
+import { history } from './App/services/history.service';
 import './styles.css';
 import Router from './routes';
 

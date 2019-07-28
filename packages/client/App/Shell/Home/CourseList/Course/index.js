@@ -2,8 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Card, CardContent, CardActionArea, CardMedia, Typography } from '@material-ui/core';
 import { LaptopChromebook } from '@material-ui/icons';
-import RowContent from '../../../../components/Layout/RowContent';
-import ColumnContent from '../../../../components/Layout/ColumnContent';
+import { Row, Column } from '../../../../components/Layout';
 import { useTheme } from '@material-ui/styles';
 import { withRouter } from 'react-router';
 
@@ -27,25 +26,25 @@ const Course = ({ course: { name, description, _id: id }, history }) => {
   `;
 
   return (
-    <RowContent p={2} justifyContent={'center'} alignItems={'center'} width={'25%'} height={'240px'}>
+    <Row p={2} justifyContent={'center'} alignItems={'center'} width={'25%'} height={'240px'}>
       <CourseCard>
         <CardActionArea onClick={handleClick}>
           <CardMediaWithBackground>
-            <RowContent justifyContent={'center'} alignItems={'center'} width={'100%'}>
+            <Row justifyContent={'center'} alignItems={'center'} width={'100%'}>
               <LaptopChromebook />
-            </RowContent>
+            </Row>
           </CardMediaWithBackground>
           <CardContent>
-            <ColumnContent justifyContent={'center'} alignItems={'center'} width={'100%'}>
+            <Column justifyContent={'center'} alignItems={'center'} width={'100%'}>
               <Typography variant={'h6'}>{name}</Typography>
               <Typography variant={'body2'} color={'textSecondary'} component={'p'}>
                 {description}
               </Typography>
-            </ColumnContent>
+            </Column>
           </CardContent>
         </CardActionArea>
       </CourseCard>
-    </RowContent>
+    </Row>
   );
 };
 

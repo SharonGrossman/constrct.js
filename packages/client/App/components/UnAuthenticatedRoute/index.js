@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { Route, Redirect } from 'react-router';
 import { useAuth } from '../../Providers/AuthProvider';
-import { instance, updateHeaderToken } from '../../Providers/AxiosProvider';
-import LoadingScreen from '../LoadingScreen';
+import { updateHeaderToken } from '../../services/axios.service';
+import { loadUser } from '../../services/auth.service';
 
 export default ({ layout: Layout, component: Component, authRequired, ...rest }) => {
-  const { authenticated, loading, token, setUser, setLoading, setAuthenticated } = useAuth();
+  const { authenticated, token, setUser, setLoading, setAuthenticated } = useAuth();
 
-  const loadUser = () => {
+  const authenticate = () => {
     setLoading(true);
-    return instance.get('/users/me').then(({ data: user }) => {
+    loadUser().then(user => {
       setUser(user);
       setAuthenticated(true);
       setLoading(false);
@@ -19,13 +19,9 @@ export default ({ layout: Layout, component: Component, authRequired, ...rest })
   useEffect(() => {
     updateHeaderToken(token);
     if (token && !authenticated) {
-      loadUser();
+      authenticate();
     }
   }, []);
-
-  if (loading) {
-    return <LoadingScreen />;
-  }
 
   return !authenticated && !authRequired ? (
     <Route
