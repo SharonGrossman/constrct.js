@@ -2,7 +2,7 @@ import React from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 import { Flex } from 'reflexbox';
-import {AuthProvider} from './Providers/AuthProvider';
+import { AuthProvider } from './Providers/AuthProvider';
 
 const theme = createMuiTheme({
   palette: {
@@ -11,6 +11,12 @@ const theme = createMuiTheme({
     },
     secondary: {
       main: '#828aff'
+    },
+    accent: {
+      main: '#efefef'
+    },
+    background: {
+      default: '#fff4f4'
     }
   }
 });

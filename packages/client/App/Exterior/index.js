@@ -2,22 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import { Row, Column } from '../components/Layout';
 
-const Video = styled.video`
-  object-fit: cover;
-  min-width: 100%;
-  height: 100%;
-  z-index: -1;
-  position: fixed;
-  top: 0;
-  padding: none;
+const Background = styled.img`
+  background-image: url(https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 90%;
 `;
 
 export default ({ children }) => (
   <Row width={'100%'}>
-    <Video loop autoPlay>
-      <source src="../../assets/Words.mp4" />
-    </Video>
-    <Column width={'100%'} justifyContent={'center'} alignItems={'center'}>
+    <Background />
+    <Column width={'100%'} height={'100%'}>
       {children}
     </Column>
   </Row>

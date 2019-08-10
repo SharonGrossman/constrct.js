@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { LinearProgress } from '@material-ui/core';
-import BorderedContent from '../components/BorderedContent';
+import { CircularProgress, Typography } from '@material-ui/core';
 import { Column, Padded } from '../../components/Layout';
 import { useAuth } from '../../Providers/AuthProvider';
 import { login } from './login.service';
 import { loadUser } from '../../services/auth.service';
-import FormHeader from '../components/FormHeader';
 import LoginForm from '../components/LoginForm';
 import NotificationSnackbar from '../../components/NotificationSnackbar';
 import LinkButton from '../../components/LinkButton';
@@ -44,16 +42,16 @@ export default ({ history }) => {
   };
 
   return (
-    <BorderedContent width={'25%'}>
-      <Column width={'100%'} height={'80%'} justifyContent={'center'} alignItems={'center'}>
-        <FormHeader title={'Sign in'} />
-        {loading && <LinearProgress color={'secondary'} />}
-        <LoginForm handleSubmit={handleLogin} />
-        <Padded>
-          <LinkButton to={'/register'} message={'Create an account'} p={1} color={'secondary'} />
-        </Padded>
-      </Column>
+    <Column width={'100%'} height={'75%'} justifyContent={'center'} alignItems={'center'}>
+      <Padded padding={3}>
+        <Typography variant={'h4'}>{'Login to Continue'}</Typography>
+      </Padded>
+      <LoginForm handleSubmit={handleLogin} />
+      <Padded>
+        <LinkButton to={'/register'} message={'or create an account'} p={1} color={'secondary'} />
+      </Padded>
       {opened && <NotificationSnackbar opened={opened} message={error} handleClose={handleClose} />}
-    </BorderedContent>
+      {loading && <CircularProgress size={64} color={'secondary'} />}
+    </Column>
   );
 };

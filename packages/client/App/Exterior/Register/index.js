@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { LinearProgress } from '@material-ui/core';
-import BorderedContent from '../components/BorderedContent';
-import FormHeader from '../components/FormHeader';
+import { CircularProgress, Typography } from '@material-ui/core';
 import { Column, Padded } from '../../components/Layout';
 import { useAuth } from '../../Providers/AuthProvider';
 import { register } from './register.service';
@@ -44,16 +42,16 @@ export default ({ history }) => {
   };
 
   return (
-    <BorderedContent width={'25%'}>
-      <Column width={'100%'} height={'80%'} justifyContent={'center'} alignItems={'center'}>
-        <FormHeader title={'Create an account'} />
-        {loading && <LinearProgress color={'secondary'} />}
-        <RegisterForm handleSubmit={handleRegister} />
-        <Padded>
-          <LinkButton color={'secondary'} message={'Back to login'} to={'/login'} />
-        </Padded>
-      </Column>
+    <Column width={'100%'} height={'75%'} justifyContent={'center'} alignItems={'center'}>
+      <Padded padding={3}>
+        <Typography variant={'h4'}>{'Register to view content'}</Typography>
+      </Padded>
+      <RegisterForm handleSubmit={handleRegister} />
+      <Padded>
+        <LinkButton to={'/login'} message={'or Go back to Login'} p={1} color={'secondary'} />
+      </Padded>
       {opened && <NotificationSnackbar opened={opened} message={error} handleClose={handleClose} />}
-    </BorderedContent>
+      {loading && <CircularProgress size={64} color={'secondary'} />}
+    </Column>
   );
 };
