@@ -9,7 +9,7 @@
     "bootstrap": "lerna bootstrap --use-workspaces",
     "build": "lerna exec --parallel -- babel --root-mode upward src -d lib",
     "coverage": "jest --coverage",
-    "dev": "lerna exec --parallel -- npm run dev",
+    "dev": "lerna exec --parallel -- yarn dev",
     "lint:js": "eslint . --ext .js --ignore-pattern lib --ignore-pattern node_modules",
     "lint:styles": "stylelint './src/**/*.js'",
     "lint": "yarn lint:js && yarn lint:styles",

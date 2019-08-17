@@ -20,7 +20,7 @@ const Web = styled(WebOutlined)`
 `;
 
 export default ({ children }) => (
-  <Row width={'100%'}>
+  <Row width={'100%'} height={'100%'}>
     <Column width={'100%'} justifyContent={'center'} alignItems={'center'}>
       <Typography variant={'h5'}>{'makmacademy'}</Typography>
       <Row justifyContent={'center'} alignItems={'center'} width={'100%'}>

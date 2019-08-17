@@ -1,32 +1,17 @@
 import React from 'react';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
-import { Flex } from 'reflexbox';
 import { AuthProvider } from './Providers/AuthProvider';
+import { ThemeProvider } from './Providers/ThemeProvider';
+import Layout from './components/Layout';
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#ffffff'
-    },
-    secondary: {
-      main: '#828aff'
-    },
-    accent: {
-      main: '#efefef'
-    },
-    background: {
-      default: '#fff4f4'
-    }
-  }
-});
-
-export default ({ children }) => (
-  <MuiThemeProvider theme={theme}>
-    <CssBaseline>
+export default ({ children }) => {
+  return (
+    <ThemeProvider>
       <AuthProvider>
-        <Flex auto>{children}</Flex>
+        <CssBaseline>
+          <Layout>{children}</Layout>
+        </CssBaseline>
       </AuthProvider>
-    </CssBaseline>
-  </MuiThemeProvider>
-);
+    </ThemeProvider>
+  );
+};
