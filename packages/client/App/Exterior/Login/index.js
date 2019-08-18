@@ -7,12 +7,14 @@ import { loadUser } from '../../services/auth.service';
 import LoginForm from '../components/LoginForm';
 import NotificationSnackbar from '../../components/NotificationSnackbar';
 import LinkButton from '../../components/LinkButton';
+import {useHistory} from '../../Providers/HistoryProvider';
 
-export default ({ history }) => {
+export default () => {
   const { setAuthenticated, setUser, updateToken } = useAuth();
   const [opened, setOpened] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const {navigate} = useHistory();
 
   const handleClose = () => {
     setOpened(false);
@@ -32,7 +34,7 @@ export default ({ history }) => {
       .then(() => {
         setAuthenticated(true);
         setLoading(false);
-        history.push('/');
+        navigate('/');
       })
       .catch(({ response: { data: { message } } }) => {
         setError(message);

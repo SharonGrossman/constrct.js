@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { List, ListItem, ListItemText } from '@material-ui/core';
 import { instance } from '../../services/axios.service';
 import { Column } from '../../components/Layout';
-import { push } from '../../services/history.service';
+import {useHistory} from '../../Providers/HistoryProvider';
 
 export default ({
   match: {
@@ -12,6 +12,7 @@ export default ({
   const [course, setCourse] = useState({});
   const [loading, setLoading] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const {navigate} = useHistory();
 
   useEffect(() => {
     setLoading(true);
@@ -25,7 +26,7 @@ export default ({
   }, []);
 
   const handleClick = id => {
-    push({ url: `/task/${id}` });
+    navigate(`/task/${id}`);
   };
 
   return (

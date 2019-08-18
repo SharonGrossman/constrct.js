@@ -4,15 +4,17 @@ import { Card, CardContent, CardActionArea, CardMedia, Typography } from '@mater
 import { LaptopChromebook } from '@material-ui/icons';
 import { Row, Column } from '../../../../components/Layout';
 import { useTheme } from '@material-ui/styles';
-import { withRouter } from 'react-router';
+import {useHistory} from '../../../../Providers/HistoryProvider';
 
 const CourseCard = styled(Card)`
   max-width: 345px;
 `;
 
-const Course = ({ course: { name, description, _id: id }, history }) => {
+const Course = ({ course: { name, description, _id: id }}) => {
+  const {navigate} = useHistory();
+
   const handleClick = () => {
-    history.push(`/course/${id}`);
+    navigate(`/course/${id}`);
   };
 
   const {
@@ -48,4 +50,4 @@ const Course = ({ course: { name, description, _id: id }, history }) => {
   );
 };
 
-export default withRouter(Course);
+export default Course;

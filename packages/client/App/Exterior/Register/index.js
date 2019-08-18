@@ -7,12 +7,14 @@ import { loadUser } from '../../services/auth.service';
 import RegisterForm from '../components/RegisterForm';
 import LinkButton from '../../components/LinkButton';
 import NotificationSnackbar from '../../components/NotificationSnackbar';
+import {useHistory} from '../../Providers/HistoryProvider';
 
-export default ({ history }) => {
+export default ()  => {
   const { setAuthenticated, setUser, updateToken } = useAuth();
   const [opened, setOpened] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const {navigate} = useHistory();
 
   useEffect(() => {
     setOpened(!!error);
@@ -32,7 +34,7 @@ export default ({ history }) => {
         setUser(user);
         setAuthenticated(true);
         setLoading(false);
-        history.push('/');
+        navigate('/');
       })
       .catch(({ response: { data: { message } } }) => {
         setLoading(false);
