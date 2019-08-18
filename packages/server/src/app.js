@@ -12,8 +12,10 @@ const mongoStarted = seed();
 export let server;
 
 const expressStarted = new Promise(resolve => {
-  server = app.listen(process.env.PORT, () => {
-    logger.info('Express listening on port %s', process.env.PORT);
+  const { PORT } = process.env;
+
+  server = app.listen(PORT, () => {
+    logger.info(`Express listening on port ${PORT}`);
     resolve();
   });
 
