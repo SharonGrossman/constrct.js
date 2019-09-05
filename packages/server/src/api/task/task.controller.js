@@ -31,7 +31,7 @@ export const update = async ({ user, params: { id }, body }) => {
 };
 
 export const destroy = async ({ user, params: { id } }) => {
-  const todo = await Task.findOneAndRemove({ _id: id, user });
+  const todo = await Task.deleteOne({ _id: id, user });
 
   if (!todo) {
     throw createError(404);

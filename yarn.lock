@@ -3523,9 +3523,9 @@ depd@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
 
-dependency-graph@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/dependency-graph/-/dependency-graph-0.4.1.tgz#302e58218d85c51a97638730dbf9b7d852a19693"
+dependency-graph@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/dependency-graph/-/dependency-graph-0.8.0.tgz#2da2d35ed852ecc24a5d6c17788ba57c3708755b"
 
 deprecation@^2.0.0:
   version "2.3.1"
@@ -6911,21 +6911,38 @@ mongodb@3.2.7:
     mongodb-core "3.2.7"
     safe-buffer "^5.1.2"
 
+mongoose-dependent-seed@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.npmjs.org/mongoose-dependent-seed/-/mongoose-dependent-seed-0.4.0.tgz#10111c8c10220d8058b756403245e1ed0fed9861"
+  dependencies:
+    dependency-graph "^0.8.0"
+    mongoose "^5.6.10"
+
 mongoose-legacy-pluralize@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
 
-mongoose-plugin-seed@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/mongoose-plugin-seed/-/mongoose-plugin-seed-0.4.0.tgz#d40c7235e75cba1874ed010fa7230c5d5467f833"
-  dependencies:
-    dependency-graph "^0.4.1"
-    pify "^2.3.0"
-    pinkie-promise "^2.0.0"
-
 mongoose@^5.3.0:
   version "5.6.4"
   resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.6.4.tgz#049ca8ad5ac16a528c23a20301579f7ac92fdb0e"
+  dependencies:
+    async "2.6.2"
+    bson "~1.1.1"
+    kareem "2.3.0"
+    mongodb "3.2.7"
+    mongodb-core "3.2.7"
+    mongoose-legacy-pluralize "1.0.2"
+    mpath "0.6.0"
+    mquery "3.2.1"
+    ms "2.1.2"
+    regexp-clone "1.0.0"
+    safe-buffer "5.1.2"
+    sift "7.0.1"
+    sliced "1.0.1"
+
+mongoose@^5.6.10:
+  version "5.6.10"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.6.10.tgz#0758b7ae7d6f9654e994cc1aa41efc63e35e131b"
   dependencies:
     async "2.6.2"
     bson "~1.1.1"
@@ -6991,6 +7008,10 @@ ms@2.1.2, ms@^2.0.0, ms@^2.1.1:
 ms@^0.7.1:
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.3.tgz#708155a5e44e33f5fd0fc53e81d0d40a91be1fff"
+
+mui-flex-layout@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/mui-flex-layout/-/mui-flex-layout-1.0.1.tgz#c312bcb4f536e660369fc5ca1c13faf0aff0bd7c"
 
 multicast-dns-service-types@^1.1.0:
   version "1.1.0"

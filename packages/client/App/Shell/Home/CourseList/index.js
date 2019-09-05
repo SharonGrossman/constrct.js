@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Course from './Course';
-import { Row } from '../../../components/Layout';
+import { Row } from 'mui-flex-layout';
 import { instance } from '../../../services/axios.service';
 
 export default () => {

@@ -4,8 +4,8 @@ import { SchoolOutlined as Logo, ExitToApp as LogoutIcon, InvertColors as ThemeT
 import styled from 'styled-components';
 import { useAuth } from '../../Providers/AuthProvider';
 import { useTheme } from '../../Providers/ThemeProvider';
-import {useHistory} from '../../Providers/HistoryProvider';
-import { Row } from '../Layout';
+import { useHistory } from '../../Providers/HistoryProvider';
+import { Row } from 'mui-flex-layout';
 
 const ClickableTitle = styled(Typography)`
   cursor: pointer;
@@ -17,7 +17,7 @@ const AcademyLogo = styled(Logo)`
 export default () => {
   const { updateToken } = useAuth();
   const { toggleTheme } = useTheme();
-  const {navigate} = useHistory();
+  const { navigate } = useHistory();
 
   const handleLogout = () => {
     updateToken(null);

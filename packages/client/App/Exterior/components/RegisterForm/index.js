@@ -3,7 +3,7 @@ import { TextField } from 'formik-material-ui';
 import Button from '@material-ui/core/Button';
 import { Formik, Form, Field } from 'formik';
 import schema from './register-form.schema';
-import { Row, Padded } from '../../../components/Layout';
+import { Row, Padded } from 'mui-flex-layout';
 import styled from 'styled-components';
 
 const initialValues = { email: '', name: { first: '', last: '' }, password: '' };

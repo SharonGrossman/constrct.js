@@ -39,7 +39,7 @@ export const update = async ({ user, params: { id }, body }) => {
 };
 
 export const destroy = async ({ user, params: { id } }) => {
-  const todo = await Course.findOneAndRemove({ _id: id, user });
+  const todo = await Course.deleteOne({ _id: id, user });
 
   if (!todo) {
     throw createError(404);

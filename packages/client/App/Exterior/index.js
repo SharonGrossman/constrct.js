@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Padded, Row, Column } from '../components/Layout';
+import { Padded, Row, Column } from 'mui-flex-layout';
 import { SchoolOutlined, Code as CodeOutlined, WebOutlined, ComputerOutlined } from '@material-ui/icons';
 import { Typography } from '@material-ui/core';
 
