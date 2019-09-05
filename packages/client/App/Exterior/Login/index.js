@@ -1,29 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { CircularProgress, Typography } from '@material-ui/core';
-import { Column, Padded } from '../../components/Layout';
+import { Column, Padded } from 'mui-flex-layout';
 import { useAuth } from '../../Providers/AuthProvider';
 import { login } from './login.service';
 import { loadUser } from '../../services/auth.service';
 import LoginForm from '../components/LoginForm';
-import NotificationSnackbar from '../../components/NotificationSnackbar';
 import LinkButton from '../../components/LinkButton';
-import {useHistory} from '../../Providers/HistoryProvider';
+import { useHistory } from '../../Providers/HistoryProvider';
+import { useNotification } from '../../Providers/NotificationProvider';
 
 export default () => {
   const { setAuthenticated, setUser, updateToken } = useAuth();
-  const [opened, setOpened] = useState(false);
-  const [error, setError] = useState(null);
+  const { open } = useNotification();
   const [loading, setLoading] = useState(false);
-  const {navigate} = useHistory();
-
-  const handleClose = () => {
-    setOpened(false);
-    setError(null);
-  };
-
-  useEffect(() => {
-    setOpened(!!error);
-  }, [error]);
+  const { navigate } = useHistory();
 
   const handleLogin = ({ email, password }, { setSubmitting }) => {
     setLoading(true);
@@ -37,9 +27,9 @@ export default () => {
         navigate('/');
       })
       .catch(({ response: { data: { message } } }) => {
-        setError(message);
         setLoading(false);
         setSubmitting(false);
+        open({ message });
       });
   };
 
@@ -52,7 +42,6 @@ export default () => {
       <Padded>
         <LinkButton to={'/register'} message={'or create an account'} p={1} color={'secondary'} />
       </Padded>
-      {opened && <NotificationSnackbar opened={opened} message={error} handleClose={handleClose} />}
       {loading && <CircularProgress size={64} color={'secondary'} />}
     </Column>
   );

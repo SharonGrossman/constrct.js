@@ -1,7 +1,7 @@
 import React from 'react';
 import { CircularProgress, Typography } from '@material-ui/core';
 import { Favorite } from '@material-ui/icons';
-import { Column } from '../Layout';
+import { Column } from 'mui-flex-layout';
 import styled from 'styled-components';
 
 const LargeCircularProgress = styled(CircularProgress)`

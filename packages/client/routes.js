@@ -1,17 +1,17 @@
 import React from 'react';
 import { Router, Switch, Redirect } from 'react-router-dom';
 import App from './App';
-import AuthenticatedRoute from './App/components/AuthenticatedRoute';
-import UnAuthenticatedRoute from './App/components/UnAuthenticatedRoute';
+import AuthenticatedRoute from './App/components/Routes/AuthenticatedRoute';
+import UnAuthenticatedRoute from './App/components/Routes/UnAuthenticatedRoute';
 import shellRoutes from './App/Shell/routes';
 import exteriorRoutes from './App/Exterior/routes';
-import {useHistory} from './App/Providers/HistoryProvider';
+import { useHistory } from './App/Providers/HistoryProvider';
 
 const routes = [...shellRoutes, ...exteriorRoutes];
 
 export default () => {
-  const {history} = useHistory();
-  
+  const { history } = useHistory();
+
   return (
     <Router history={history}>
       <App>
@@ -23,7 +23,7 @@ export default () => {
               <UnAuthenticatedRoute exact={true} key={index} {...route} />
             )
           )}
-          <Redirect to={'/'} from={'*'}/>
+          <Redirect to={'/'} from={'*'} />
         </Switch>
       </App>
     </Router>

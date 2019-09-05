@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
-import { Column } from '../components/Layout';
+import { Column } from 'mui-flex-layout';
 import Toolbar from '../components/Toolbar';
 
 export default memo(({ children }) => (
   <Column width={'100%'} height={'100%'}>
-    <Toolbar/>
+    <Toolbar />
     {children}
   </Column>
 ));

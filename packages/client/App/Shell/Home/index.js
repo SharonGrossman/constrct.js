@@ -2,7 +2,7 @@ import React from 'react';
 import CourseList from './CourseList';
 import { Typography } from '@material-ui/core';
 import { useAuth } from '../../Providers/AuthProvider';
-import { Column } from '../../components/Layout';
+import { Column } from 'mui-flex-layout';
 
 export default () => {
   const { user } = useAuth();

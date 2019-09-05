@@ -20,10 +20,17 @@ export const ThemeProvider = props => {
     setType(newType);
   };
 
-  useEffect(() => {
-    const newTheme = createMuiTheme(type === 'light' ? lightTheme : darkTheme);
+  const getPalette = () => {
+    const primary = theme.palette.primary.main;
+    const secondary = theme.palette.secondary.main;
 
-    setTheme(newTheme);
+    return { primary, secondary };
+  };
+
+  useEffect(() => {
+    const newTheme = type === 'light' ? lightTheme : darkTheme;
+
+    setTheme(createMuiTheme({ ...initialState, ...newTheme }));
     setLocalStorageType(type);
   }, [type]);
 
@@ -31,7 +38,8 @@ export const ThemeProvider = props => {
     <ThemeContext.Provider
       value={{
         theme,
-        toggleTheme
+        toggleTheme,
+        getPalette
       }}
       {...props}
     >

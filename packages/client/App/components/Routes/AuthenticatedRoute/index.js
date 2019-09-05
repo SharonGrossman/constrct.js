@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { Route, Redirect } from 'react-router';
-import { useAuth } from '../../Providers/AuthProvider';
-import { updateHeaderToken } from '../../services/axios.service';
-import LoadingScreen from '../LoadingScreen';
-import { loadUser } from '../../services/auth.service';
+import { useAuth } from '../../../Providers/AuthProvider/index';
+import { updateHeaderToken } from '../../../services/axios.service';
+import LoadingScreen from '../../LoadingScreen/index';
+import { loadUser } from '../../../services/auth.service';
 
 export default ({ layout: Layout, component: Component, authRequired, ...rest }) => {
   const { authenticated, loading, removeToken, token, setUser, setLoading, setAuthenticated } = useAuth();
@@ -12,7 +12,7 @@ export default ({ layout: Layout, component: Component, authRequired, ...rest })
 
   const authenticate = () => {
     setLoading(true);
-    loadUser()
+    return loadUser()
       .then(user => {
         setUser(user);
         setAuthenticated(true);

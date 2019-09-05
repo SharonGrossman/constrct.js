@@ -5,21 +5,25 @@ const HistoryContext = createContext();
 const history = createBrowserHistory();
 
 export const HistoryProvider = props => {
-  const [url, setUrl] = useState('/');
+  const [url, setUrl] = useState(null);
 
   useEffect(() => {
-    history.push(url);
+    if (url) {
+      history.push(url);
+    }
   }, [url]);
 
   const navigate = url => setUrl(url);
 
-  return <HistoryContext.Provider
-    value={{
-      history,
-      navigate
-    }}
-    {...props}
-  />;
+  return (
+    <HistoryContext.Provider
+      value={{
+        history,
+        navigate
+      }}
+      {...props}
+    />
+  );
 };
 
 export const useHistory = () => useContext(HistoryContext);

@@ -2,40 +2,29 @@ import React from 'react';
 import styled from 'styled-components';
 import { Card, CardContent, CardActionArea, CardMedia, Typography } from '@material-ui/core';
 import { LaptopChromebook } from '@material-ui/icons';
-import { Row, Column } from '../../../../components/Layout';
-import { useTheme } from '@material-ui/styles';
-import {useHistory} from '../../../../Providers/HistoryProvider';
+import { Row, Column } from 'mui-flex-layout';
+import { useHistory } from '../../../../Providers/HistoryProvider';
 
 const CourseCard = styled(Card)`
   max-width: 345px;
 `;
 
-const Course = ({ course: { name, description, _id: id }}) => {
-  const {navigate} = useHistory();
+const Course = ({ course: { name, description, _id: id } }) => {
+  const { navigate } = useHistory();
 
   const handleClick = () => {
     navigate(`/course/${id}`);
   };
 
-  const {
-    palette: {
-      secondary: { main }
-    }
-  } = useTheme();
-
-  const CardMediaWithBackground = styled(CardMedia)`
-    background-color: ${main};
-  `;
-
   return (
     <Row p={2} justifyContent={'center'} alignItems={'center'} width={'25%'} height={'240px'}>
       <CourseCard>
         <CardActionArea onClick={handleClick}>
-          <CardMediaWithBackground>
+          <CardMedia>
             <Row justifyContent={'center'} alignItems={'center'} width={'100%'}>
               <LaptopChromebook />
             </Row>
-          </CardMediaWithBackground>
+          </CardMedia>
           <CardContent>
             <Column justifyContent={'center'} alignItems={'center'} width={'100%'}>
               <Typography variant={'h6'}>{name}</Typography>

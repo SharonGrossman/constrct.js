@@ -1,29 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { CircularProgress, Typography } from '@material-ui/core';
-import { Column, Padded } from '../../components/Layout';
+import { Column, Padded } from 'mui-flex-layout';
 import { useAuth } from '../../Providers/AuthProvider';
 import { register } from './register.service';
 import { loadUser } from '../../services/auth.service';
 import RegisterForm from '../components/RegisterForm';
 import LinkButton from '../../components/LinkButton';
-import NotificationSnackbar from '../../components/NotificationSnackbar';
-import {useHistory} from '../../Providers/HistoryProvider';
+import { useHistory } from '../../Providers/HistoryProvider';
+import { useNotification } from '../../Providers/NotificationProvider';
 
-export default ()  => {
+export default () => {
   const { setAuthenticated, setUser, updateToken } = useAuth();
-  const [opened, setOpened] = useState(false);
-  const [error, setError] = useState(null);
+  const { open } = useNotification();
   const [loading, setLoading] = useState(false);
-  const {navigate} = useHistory();
-
-  useEffect(() => {
-    setOpened(!!error);
-  }, [error]);
-
-  const handleClose = () => {
-    setOpened(false);
-    setError(null);
-  };
+  const { navigate } = useHistory();
 
   const handleRegister = ({ email, password, name }, { setSubmitting }) => {
     setLoading(true);
@@ -39,7 +29,7 @@ export default ()  => {
       .catch(({ response: { data: { message } } }) => {
         setLoading(false);
         setSubmitting(false);
-        setError(message);
+        open({ message });
       });
   };
 
@@ -52,7 +42,6 @@ export default ()  => {
       <Padded>
         <LinkButton to={'/login'} message={'or Go back to Login'} p={1} color={'secondary'} />
       </Padded>
-      {opened && <NotificationSnackbar opened={opened} message={error} handleClose={handleClose} />}
       {loading && <CircularProgress size={64} color={'secondary'} />}
     </Column>
   );
