@@ -1,7 +1,7 @@
 import createError from 'http-errors';
 import _ from 'lodash';
-import User from './user.model';
 import { signToken } from '../../auth/auth.service';
+import User from './user.model';
 
 export const index = () => User.find({});
 
@@ -44,7 +44,11 @@ export const update = async ({ user, params: { id }, body }) => {
   }
 };
 
-export const changePassword = async ({ user, params: { id }, body: { oldPassword, newPassword } }) => {
+export const changePassword = async ({
+  user,
+  params: { id },
+  body: { oldPassword, newPassword },
+}) => {
   if (typeof oldPassword !== 'string' || typeof newPassword !== 'string') {
     throw createError(400, 'missing password arguments');
   }

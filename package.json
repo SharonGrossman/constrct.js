@@ -7,15 +7,12 @@
   ],
   "scripts": {
     "bootstrap": "lerna bootstrap --use-workspaces",
-    "build": "lerna exec --parallel -- babel --root-mode upward src -d lib",
-    "coverage": "jest --coverage",
+    "build": "lerna exec --parallel -- yarn build",
     "dev": "lerna exec --parallel -- yarn dev",
-    "lint:js": "eslint . --ext .js --ignore-pattern lib --ignore-pattern node_modules",
-    "lint:styles": "stylelint './src/**/*.js'",
-    "lint": "yarn lint:js && yarn lint:styles",
-    "prettier": "prettier --write \"**/*.{js,json,md,yml}\"",
+    "lint": "lerna exec --parallel -- yarn lint",
     "lerna-publish": "lerna publish",
-    "test": "yarn build && yarn lint && yarn coverage"
+    "test": "yarn lint",
+    "prod": "yarn build && node packages/server/dist/app.js"
   },
   "description": "App",
   "main": "index.js",
@@ -23,7 +20,16 @@
   "author": "Sharon Grossman <sharong1337@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "husky": "^2.3.0",
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "eslint": "^6.3.0",
+    "eslint-config-prettier": "^6.2.0",
+    "eslint-config-sharongrossman": "^0.0.2",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-lodash": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-unicorn": "^10.0.0",
+    "husky": "^3.0.5",
     "lerna": "^3.14.1",
     "lint-staged": "^8.1.7",
     "prettier": "^1.17.1"

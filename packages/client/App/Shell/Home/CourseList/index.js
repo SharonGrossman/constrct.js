@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Course from './Course';
 import { Row } from 'mui-flex-layout';
 import { instance } from '../../../services/axios.service';
+import Course from './Course';
 
 export default () => {
   const [courses, setCourses] = useState([]);

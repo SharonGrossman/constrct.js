@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Route, Redirect } from 'react-router';
-import { useAuth } from '../../../Providers/AuthProvider/index';
+import { useAuth } from '../../../Providers/AuthProvider';
 import { updateHeaderToken } from '../../../services/axios.service';
 import { loadUser } from '../../../services/auth.service';
 
@@ -26,6 +26,7 @@ export default ({ layout: Layout, component: Component, authRequired, ...rest })
   return !authenticated && !authRequired ? (
     <Route
       {...rest}
+      // eslint-disable-next-line react/jsx-no-bind
       render={props => (
         <Layout>
           <Component {...props} />

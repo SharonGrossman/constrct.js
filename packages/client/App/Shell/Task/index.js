@@ -17,5 +17,5 @@ export default ({
     });
   }, []);
 
-  return loading ? <span>Loading!!</span> : <span>Hi task {task.name}</span>;
+  return loading ? <span>{'Loading!!'}</span> : <span>{`Hi task ${task.name}`}</span>;
 };

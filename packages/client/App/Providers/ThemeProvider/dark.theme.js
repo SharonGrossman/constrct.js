@@ -1,9 +1,8 @@
 import { blue, grey, pink } from '@material-ui/core/colors';
-import { ACCENT_MAIN } from './initial.theme';
 
-const DARK_PRIMARY_MAIN = blue[200];
-const DARK_SECONDARY_MAIN = pink[200];
-const DARK_BACKGROUND = grey[900];
+const { 200: DARK_PRIMARY_MAIN } = blue;
+const { 200: DARK_SECONDARY_MAIN } = pink;
+const { 900: DARK_BACKGROUND } = grey;
 
 export default {
   palette: {
@@ -13,9 +12,6 @@ export default {
     },
     secondary: {
       main: DARK_SECONDARY_MAIN
-    },
-    accent: {
-      main: ACCENT_MAIN
     }
   },
   background: {

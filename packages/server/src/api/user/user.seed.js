@@ -3,19 +3,19 @@ export default {
     {
       name: {
         first: 'rick',
-        last: 'sanchez'
+        last: 'sanchez',
       },
       email: 'rick@gmail.com',
       password: '123456789',
-      admin: true
+      admin: true,
     },
     {
       name: {
         first: 'morty',
-        last: 'sanchez'
+        last: 'sanchez',
       },
       email: 'morty@gmail.com',
-      password: '123456789'
-    }
-  ]
+      password: '123456789',
+    },
+  ],
 };

@@ -1,7 +1,7 @@
 import { deepOrange } from '@material-ui/core/colors';
 import lightTheme from './light.theme';
 
-export const ACCENT_MAIN = deepOrange[500];
+export const { 500: ERROR_MAIN } = deepOrange;
 export const INITIAL_PALETTE_TYPE = 'light';
 
 export const typography = {
@@ -20,6 +20,11 @@ export const typography = {
 };
 
 export default {
+  palette: {
+    error: {
+      main: ERROR_MAIN
+    }
+  },
   ...lightTheme,
   ...typography
 };

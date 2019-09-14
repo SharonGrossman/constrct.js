@@ -11,5 +11,5 @@ export const authInstance = axios.create({
 });
 
 export const updateHeaderToken = token => {
-  instance.defaults.headers['Authorization'] = `Bearer ${token}`;
+  instance.defaults.headers.Authorization = `Bearer ${token}`;
 };

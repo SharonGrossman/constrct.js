@@ -16,11 +16,11 @@ export default () => {
     <Router history={history}>
       <App>
         <Switch>
-          {routes.map((route, index) =>
+          {routes.map(route =>
             route.authRequired ? (
-              <AuthenticatedRoute exact={true} key={index} {...route} />
+              <AuthenticatedRoute exact key={route.name} {...route} />
             ) : (
-              <UnAuthenticatedRoute exact={true} key={index} {...route} />
+              <UnAuthenticatedRoute exact key={route.name} {...route} />
             )
           )}
           <Redirect to={'/'} from={'*'} />

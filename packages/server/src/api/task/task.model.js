@@ -7,13 +7,13 @@ const TaskSchema = new Schema({
   name: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
   },
   duration: String,
   course: {
     ref: 'Course',
-    type: Schema.Types.ObjectId
-  }
+    type: Schema.Types.ObjectId,
+  },
 });
 
 TaskSchema.post('save', doc => {

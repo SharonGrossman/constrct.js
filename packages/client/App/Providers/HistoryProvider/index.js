@@ -4,7 +4,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 const HistoryContext = createContext();
 const history = createBrowserHistory();
 
-export const HistoryProvider = props => {
+export default props => {
   const [url, setUrl] = useState(null);
 
   useEffect(() => {

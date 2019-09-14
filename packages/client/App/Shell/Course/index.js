@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { List, ListItem, ListItemText } from '@material-ui/core';
-import { instance } from '../../services/axios.service';
+import { List } from '@material-ui/core';
 import { Column } from 'mui-flex-layout';
+import { instance } from '../../services/axios.service';
 import { useHistory } from '../../Providers/HistoryProvider';
+import CourseItem from './components/CourseItem';
 
 export default ({
   match: {
@@ -33,13 +34,9 @@ export default ({
     <Column width={'100%'} height={'10%'}>
       <List>
         {loading ? (
-          <span>Loading!!!</span>
+          <span>{'Loading'}</span>
         ) : (
-          tasks.map(task => (
-            <ListItem key={task._id} button onClick={() => handleClick(task._id)}>
-              <ListItemText id={id} primary={`${task.name}`} secondary={`duration: ${task.duration}`} />
-            </ListItem>
-          ))
+          tasks.map(task => <CourseItem key={task._id} task={task} onClick={handleClick} />)
         )}
       </List>
     </Column>

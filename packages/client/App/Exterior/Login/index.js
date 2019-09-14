@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { CircularProgress, Typography } from '@material-ui/core';
 import { Column, Padded } from 'mui-flex-layout';
 import { useAuth } from '../../Providers/AuthProvider';
-import { login } from './login.service';
 import { loadUser } from '../../services/auth.service';
 import LoginForm from '../components/LoginForm';
 import LinkButton from '../../components/LinkButton';
 import { useHistory } from '../../Providers/HistoryProvider';
 import { useNotification } from '../../Providers/NotificationProvider';
+import { login } from './login.service';
 
 export default () => {
   const { setAuthenticated, setUser, updateToken } = useAuth();
@@ -17,6 +17,7 @@ export default () => {
 
   const handleLogin = ({ email, password }, { setSubmitting }) => {
     setLoading(true);
+
     return login({ email, password })
       .then(updateToken)
       .then(loadUser)
@@ -26,7 +27,13 @@ export default () => {
         setLoading(false);
         navigate('/');
       })
-      .catch(({ response: { data: { message } } }) => {
+      .catch(error => {
+        const {
+          response: {
+            data: { message }
+          }
+        } = error;
+
         setLoading(false);
         setSubmitting(false);
         open({ message });

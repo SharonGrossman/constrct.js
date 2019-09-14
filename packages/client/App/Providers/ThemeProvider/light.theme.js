@@ -1,11 +1,10 @@
 import { blue, grey, pink } from '@material-ui/core/colors';
 import { darken } from '@material-ui/core/styles';
-import { ACCENT_MAIN } from './initial.theme';
 
-const LIGHT_PRIMARY_MAIN = blue[700];
+const { 700: LIGHT_PRIMARY_MAIN } = blue;
 const LIGHT_SECONDARY_MAIN = darken(pink.A400, 0.1);
 const LIGHT_BACKGROUND = '#fff';
-const LIGHT_APPBAR = grey[100];
+const { 100: LIGHT_APPBAR } = grey;
 
 export default {
   palette: {
@@ -15,9 +14,6 @@ export default {
     },
     secondary: {
       main: LIGHT_SECONDARY_MAIN
-    },
-    accent: {
-      main: ACCENT_MAIN
     }
   },
   background: {

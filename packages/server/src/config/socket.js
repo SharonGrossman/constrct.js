@@ -9,15 +9,15 @@ import taskSocket from '../api/task/task.socket';
 export default server => {
   const socketServer = socketio(server, {
     serveClient: false,
-    path: '/ws'
+    path: '/ws',
   });
 
   socketServer.on(
     'connection',
     socketioJwt.authorize({
       secret: process.env.SESSION_SECRET,
-      timeout: 15000
-    })
+      timeout: 15000,
+    }),
   );
 
   const getSockets = (filter = _.constant(true)) =>

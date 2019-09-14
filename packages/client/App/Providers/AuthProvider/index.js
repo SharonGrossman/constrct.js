@@ -14,7 +14,7 @@ const getTokenFromLocalStorage = () => localStorage.getItem('token');
 const setLocalStorageToken = token => localStorage.setItem('token', token);
 const removeTokenFromLocalStorage = () => localStorage.removeItem('token');
 
-export const AuthProvider = props => {
+export default props => {
   const [token, setToken] = useState(getTokenFromLocalStorage());
   const [user, setUser] = useState(null);
   const [authenticated, setAuthenticated] = useState(false);

@@ -1,6 +1,6 @@
 import React from 'react';
-import { useTheme } from '../../Providers/ThemeProvider';
 import styled from 'styled-components';
+import { useTheme } from '../../Providers/ThemeProvider';
 
 export default ({ theme, component: Component, children, ...rest }) => {
   const { getPalette } = useTheme();

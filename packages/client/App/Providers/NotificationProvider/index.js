@@ -1,22 +1,9 @@
 import React, { createContext, useState, useContext } from 'react';
-import { Snackbar } from '@material-ui/core';
+import Notification from './Snackbar';
 
 const NotificationContext = createContext();
 
-const Notification = ({ opened, handleClose, message }) => (
-  <Snackbar
-    open={opened}
-    message={message}
-    onClose={handleClose}
-    anchorOrigin={{
-      vertical: 'bottom',
-      horizontal: 'left'
-    }}
-    autoHideDuration={4000}
-  />
-);
-
-export const NotificationProvider = props => {
+export default props => {
   const [message, setMessage] = useState(null);
   const [opened, setOpened] = useState(false);
 
@@ -30,6 +17,8 @@ export const NotificationProvider = props => {
     setOpened(false);
   };
 
+  const { children } = props;
+
   return (
     <NotificationContext.Provider
       value={{
@@ -39,7 +28,7 @@ export const NotificationProvider = props => {
       {...props}
     >
       <Notification message={message} opened={opened} handleClose={close} />
-      {props.children}
+      {children}
     </NotificationContext.Provider>
   );
 };

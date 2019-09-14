@@ -10,7 +10,7 @@ const removeTypeFromLocalStorage = () => localStorage.removeItem('theme');
 
 const ThemeContext = createContext(initialState);
 
-export const ThemeProvider = props => {
+export default props => {
   const [theme, setTheme] = useState(createMuiTheme(initialState));
   const [type, setType] = useState(getTypeFromLocalStorage());
 
@@ -28,11 +28,14 @@ export const ThemeProvider = props => {
   };
 
   useEffect(() => {
+    console.log(type);
     const newTheme = type === 'light' ? lightTheme : darkTheme;
 
     setTheme(createMuiTheme({ ...initialState, ...newTheme }));
     setLocalStorageType(type);
   }, [type]);
+
+  const { children } = props;
 
   return (
     <ThemeContext.Provider
@@ -43,7 +46,7 @@ export const ThemeProvider = props => {
       }}
       {...props}
     >
-      <MuiThemeProvider theme={theme}>{props.children}</MuiThemeProvider>
+      <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
     </ThemeContext.Provider>
   );
 };

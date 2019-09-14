@@ -1,3 +1,4 @@
+import {join} from 'path';
 import express from 'express';
 import morgan from 'morgan';
 import compression from 'compression';
@@ -6,6 +7,7 @@ import methodOverride from 'method-override';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
 import helmet from 'helmet';
+import staticGzip from 'express-static-gzip';
 import mongooseErrors from 'express-mongoose-errors';
 import jsonErrorHandler from 'express-json-error-handler';
 import inProduction from 'in-production';
@@ -22,7 +24,10 @@ export default () => {
   app.use(methodOverride());
   app.use(cookieParser());
   app.use(passport.initialize());
+  app.use(staticGzip(join(__dirname, '..','..', '..', '..', 'client')));
+  app.use(express.static(join(__dirname, '..', '..', '..', '..', 'client')));
   app.use(compression());
+
 
   if (!inProduction) {
     app.use(morgan('dev'));
@@ -35,8 +40,8 @@ export default () => {
     jsonErrorHandler({
       log({ err, req, res }) {
         logger.error({ err, req, res });
-      }
-    })
+      },
+    }),
   );
 
   return app;

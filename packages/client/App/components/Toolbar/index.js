@@ -1,11 +1,15 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Tooltip } from '@material-ui/core';
-import { SchoolOutlined as Logo, ExitToApp as LogoutIcon, InvertColors as ThemeToggleIcon } from '@material-ui/icons';
+import {
+  SchoolOutlined as Logo,
+  ExitToApp as LogoutIcon,
+  InvertColors as ThemeToggleIcon
+} from '@material-ui/icons';
 import styled from 'styled-components';
+import { Row } from 'mui-flex-layout';
 import { useAuth } from '../../Providers/AuthProvider';
 import { useTheme } from '../../Providers/ThemeProvider';
 import { useHistory } from '../../Providers/HistoryProvider';
-import { Row } from 'mui-flex-layout';
 
 const ClickableTitle = styled(Typography)`
   cursor: pointer;

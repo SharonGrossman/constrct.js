@@ -1,5 +1,6 @@
 {
     "hooks": {
-        "pre-commit": "lint-staged"
+        "pre-commit": "lerna run --parallel --stream precommit",
+        "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
 }

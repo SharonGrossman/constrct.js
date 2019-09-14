@@ -2,22 +2,23 @@ import createError from 'http-errors';
 import _ from 'lodash';
 import Task from './task.model';
 
-export const index = ({params: {id: course}}) => Task.find({ course });
+export const index = ({ params: { id: course } }) => Task.find({ course });
+
 export const getAll = () => Task.find({});
 
-export const show = async ({ params: { id } }) => Task.findById(id);
+export const show = ({ params: { id } }) => Task.findById(id);
 
-export const create = async ({ user, body }, res) => {
+export const create = async ({ body }, res) => {
   const data = _.pick(body, ['text']);
-  const todo = await Task.create({ ...data, user });
+  const task = await Task.create({ ...data });
 
-  if (!todo) {
+  if (!task) {
     throw createError(404);
   }
 
   res.status(201);
 
-  return todo;
+  return task;
 };
 
 export const update = async ({ user, params: { id }, body }) => {

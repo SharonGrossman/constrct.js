@@ -1,6 +1,6 @@
 import passport from 'passport';
-import User from '../../api/user/user.model';
 import { Strategy } from 'passport-local';
+import User from '../../api/user/user.model';
 
 const LocalStrategy = new Strategy({ usernameField: 'email' }, User.authenticate());
 

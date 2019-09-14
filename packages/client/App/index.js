@@ -6,7 +6,6 @@ import Layout from './components/Layout';
 export default ({ children }) => {
   return (
     <AppProviders>
-      {' '}
       <CssBaseline>
         <Layout>{children}</Layout>
       </CssBaseline>

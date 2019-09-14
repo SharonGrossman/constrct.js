@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { CircularProgress, Typography } from '@material-ui/core';
 import { Column, Padded } from 'mui-flex-layout';
 import { useAuth } from '../../Providers/AuthProvider';
-import { register } from './register.service';
 import { loadUser } from '../../services/auth.service';
 import RegisterForm from '../components/RegisterForm';
 import LinkButton from '../../components/LinkButton';
 import { useHistory } from '../../Providers/HistoryProvider';
 import { useNotification } from '../../Providers/NotificationProvider';
+import { register } from './register.service';
 
 export default () => {
   const { setAuthenticated, setUser, updateToken } = useAuth();
@@ -26,7 +26,13 @@ export default () => {
         setLoading(false);
         navigate('/');
       })
-      .catch(({ response: { data: { message } } }) => {
+      .catch(error => {
+        const {
+          response: {
+            data: { message }
+          }
+        } = error;
+
         setLoading(false);
         setSubmitting(false);
         open({ message });
