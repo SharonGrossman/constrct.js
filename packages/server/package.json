@@ -37,7 +37,7 @@
 		"env-bunyan": "^0.1.0",
 		"express": "^4.16.3",
 		"express-async-router": "^0.1.13",
-		"express-json-error-handler": "^2.0.0",
+		"express-json-error-handler": "^3.0.0",
 		"express-jwt": "^5.3.1",
 		"express-mongoose-errors": "^0.2.0",
 		"express-param-objectid": "^1.0.0",
