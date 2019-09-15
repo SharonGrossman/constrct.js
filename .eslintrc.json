@@ -4,7 +4,6 @@
     "es6": true,
     "node": true
   },
-  "parser": "babel-eslint",
   "extends": [
     "sharongrossman",
     "plugin:prettier/recommended"

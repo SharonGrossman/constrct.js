@@ -25,7 +25,6 @@
 		"@babel/node": "^7.0.0",
 		"@babel/preset-env": "^7.1.0",
 		"copyfiles": "^2.1.0",
-		"eslint-plugin-unicorn": "^10.0.0",
 		"nodemon": "^1.18.4"
 	},
 	"dependencies": {
