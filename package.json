@@ -7,12 +7,13 @@
   ],
   "scripts": {
     "bootstrap": "lerna bootstrap --use-workspaces",
-    "build": "lerna exec --parallel -- yarn build",
+    "build": "yarn clean && lerna exec --parallel -- yarn build",
     "dev": "lerna exec --parallel -- yarn dev",
+    "clean": "lerna exec --parallel -- yarn clean",
     "lint": "lerna exec --parallel -- yarn lint",
     "lerna-publish": "lerna publish",
     "test": "yarn lint",
-    "prod": "yarn build && node packages/server/dist/app.js"
+    "prod:app": "yarn build && cd packages/server && node dist/app.js"
   },
   "description": "App",
   "main": "index.js",
@@ -32,6 +33,7 @@
     "husky": "^3.0.5",
     "lerna": "^3.14.1",
     "lint-staged": "^9.2.5",
-    "prettier": "^1.17.1"
+    "prettier": "^1.17.1",
+    "rimraf": "^3.0.0"
   }
 }

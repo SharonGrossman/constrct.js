@@ -6,6 +6,7 @@
 	"module": "app.js",
 	"scripts": {
 		"babel": "babel src -d dist -s",
+		"clean": "rimraf dist",
 		"precommit": "lint-staged",
 		"copy": "copyfiles package.json .env.defaults .env.schema dist",
 		"build": "rimraf dist && yarn babel && yarn copy",

@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "rimraf dist && webpack --env=production --define process.env.NODE_ENV=\"'production'\"",
+    "build": "webpack --env=production --define process.env.NODE_ENV=\"'production'\"",
+    "clean": "rimraf dist",
     "precommit": "lint-staged",
     "dev": "webpack-dev-server --open",
     "lint": "eslint . --fix"
