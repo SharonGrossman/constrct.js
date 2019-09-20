@@ -3,7 +3,7 @@ import 'dotenv-extended/config';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { HotModuleReplacementPlugin } from 'webpack';
 import CompressionPlugin from 'compression-webpack-plugin';
-import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
+import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 
 export default env => {
   const mode = env === 'production' ? 'production' : 'development';
@@ -18,10 +18,8 @@ export default env => {
       new CompressionPlugin()
     ],
     entry: {
-      main: [
-        'react-hot-loader/patch',
-        './index.js'
-      ],      vendor: ['lodash', 'react', '@material-ui/core']
+      main: ['react-hot-loader/patch', './index.js'],
+      vendor: ['lodash', 'react', '@material-ui/core']
     },
     output: {
       path: resolve(__dirname, './dist'),

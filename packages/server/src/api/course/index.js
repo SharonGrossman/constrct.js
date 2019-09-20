@@ -1,16 +1,17 @@
 import { AsyncRouter } from 'express-async-router';
 import objectId from 'express-param-objectid';
-import { isAuthenticated } from '../../auth/auth.service';
+import { authenticate, validate } from '../../middlewares';
+import schema from './course.schema';
 import * as controller from './course.controller';
 
 const router = new AsyncRouter();
 
 router.param('id', objectId);
 
-router.get('/', isAuthenticated(), controller.index);
-router.post('/', isAuthenticated(), controller.create);
-router.get('/:id', isAuthenticated(), controller.show);
-router.put('/:id', isAuthenticated, controller.update);
-router.delete('/:id', isAuthenticated(), controller.destroy);
+router.get('/', authenticate(), controller.index);
+router.post('/', validate({ schema }), authenticate(), controller.create);
+router.get('/:id', authenticate(), controller.show);
+router.put('/:id', validate({ schema }), authenticate, controller.update);
+router.delete('/:id', authenticate(), controller.destroy);
 
 export default router;

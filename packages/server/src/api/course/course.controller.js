@@ -1,7 +1,5 @@
 import createError from 'http-errors';
-import _ from 'lodash';
 import Course from './course.model';
-import { emitter } from './course.socket';
 
 export const index = () => Course.find();
 
@@ -16,8 +14,8 @@ export const show = async ({ params: { id } }) => {
 };
 
 export const create = async ({ user, body }, res) => {
-  const data = _.pick(body, ['text']);
-  const todo = await Course.create({ ...data, user });
+  const { text } = body;
+  const todo = await Course.create({ text, user });
 
   if (!todo) {
     throw createError(404);
@@ -29,9 +27,9 @@ export const create = async ({ user, body }, res) => {
 };
 
 export const update = async ({ user, params: { id }, body }) => {
-  const data = _.pick(body, ['completed']);
+  const { completed } = body;
 
-  const res = await Course.findOneAndUpdate({ _id: id, user }, { $set: data }, { new: true });
+  const res = await Course.findOneAndUpdate({ _id: id, user }, { $set: completed }, { new: true });
 
   if (!res) {
     throw createError(404);

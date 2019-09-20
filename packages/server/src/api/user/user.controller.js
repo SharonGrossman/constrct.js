@@ -1,6 +1,5 @@
 import createError from 'http-errors';
-import _ from 'lodash';
-import { signToken } from '../../auth/auth.service';
+import { signToken } from '../../auth/jwt.service';
 import User from './user.model';
 
 export const index = () => User.find({});
@@ -14,14 +13,14 @@ export const show = async ({ params: { id } }) => {
 };
 
 export const create = async ({ body }, res) => {
-  const data = _.pick(body, ['name', 'email', 'password']);
-  const existingUser = await User.findOne({ email: data.email });
+  const { name, email, password } = body;
+  const existingUser = await User.findOne({ email });
 
   if (existingUser) {
     throw createError(401, 'Email or Password are not valid');
   }
 
-  const user = await User.create({ ...data });
+  const user = await User.create({ name, email, password });
 
   if (!user) {
     throw createError(400, 'Something went wrong, please try again');
@@ -35,36 +34,13 @@ export const update = async ({ user, params: { id }, body }) => {
     throw createError(403);
   }
 
-  const data = _.pick(body, ['name', 'email']);
+  const { name, email } = body;
 
-  const result = await User.findByIdAndUpdate(id, { $set: data });
+  const result = await User.findByIdAndUpdate(id, { $set: { name, email } });
 
   if (!result) {
     throw createError(404);
   }
-};
-
-export const changePassword = async ({
-  user,
-  params: { id },
-  body: { oldPassword, newPassword },
-}) => {
-  if (typeof oldPassword !== 'string' || typeof newPassword !== 'string') {
-    throw createError(400, 'missing password arguments');
-  }
-
-  if (!user._id.equals(id)) {
-    throw createError(403);
-  }
-
-  const authenticated = await user.authenticate(oldPassword);
-
-  if (!authenticated) {
-    throw createError(403);
-  }
-
-  user.setPassword(newPassword);
-  user.save();
 };
 
 export const me = ({ user }) => user;

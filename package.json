@@ -8,7 +8,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap --use-workspaces",
     "build": "yarn clean && lerna exec --parallel -- yarn build",
-    "dev": "lerna exec --parallel -- yarn dev",
+    "dev": "lerna exec --parallel --no-bail -- yarn dev",
     "clean": "lerna exec --parallel -- yarn clean",
     "lint": "lerna exec --parallel -- yarn lint",
     "lerna-publish": "lerna publish",
@@ -26,7 +26,7 @@
     "@commitlint/config-conventional": "^8.1.0",
     "eslint": "^6.3.0",
     "eslint-config-prettier": "^6.2.0",
-    "eslint-config-sharongrossman": "^0.1.0",
+    "eslint-config-sharongrossman": "^0.0.2",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-lodash": "^6.0.0",
     "eslint-plugin-prettier": "^3.1.0",

@@ -9,28 +9,28 @@ const UserSchema = new Schema({
   name: {
     first: {
       type: String,
-      required: true,
+      required: true
     },
     last: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
   email: {
     match: emailAddress,
     type: String,
     required: true,
     lowercase: true,
-    unique: true,
+    unique: true
   },
-  admin: Boolean,
+  admin: Boolean
 });
 
 /**
  * Plugins
  */
 UserSchema.plugin(passportLocalMongoose, {
-  usernameField: 'email',
+  usernameField: 'email'
 });
 
 /**

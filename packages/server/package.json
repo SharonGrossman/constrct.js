@@ -46,6 +46,7 @@
 		"http-errors": "^1.7.1",
 		"http-reject-empty": "^1.0.0",
 		"in-production": "^1.0.1",
+		"joi": "^14.3.1",
 		"jsonwebtoken": "^8.3.0",
 		"lodash": "^4.17.11",
 		"method-override": "^3.0.0",
