@@ -3994,9 +3994,10 @@ eslint-config-prettier@^6.2.0:
   dependencies:
     get-stdin "^6.0.0"
 
-eslint-config-sharongrossman@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.npmjs.org/eslint-config-sharongrossman/-/eslint-config-sharongrossman-0.0.2.tgz#fb0a140774216349f5f5826ea767caf07508d641"
+eslint-config-sharongrossman@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-sharongrossman/-/eslint-config-sharongrossman-0.1.0.tgz#cec879d26986a405618a15e4a526c7a0d1472727"
+  integrity sha512-0VGybMDBdbqSFMDd+WEzCHcAMr6S4PGFvqR+CmdxcOKqYUpg+jgAb3DExW3xKHY+uTB1KrIC3SmSE60ZeUXAZQ==
   dependencies:
     babel-eslint "^10.0.3"
     eslint-plugin-import "^2.18.2"
