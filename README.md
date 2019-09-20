@@ -1,6 +1,12 @@
-# constrct.js :construction:
-![BuildStatus](https://travis-ci.org/SharonGrossman/constrct.js.svg?branch=master) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) [![Greenkeeper badge](https://badges.greenkeeper.io/SharonGrossman/constrct.js.svg)](https://greenkeeper.io/)
+<div align="center">
+<h1>
+constrct.js 
 
+:construction:
+</h1>
+
+![BuildStatus](https://travis-ci.org/SharonGrossman/constrct.js.svg?branch=master) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) [![Greenkeeper badge](https://badges.greenkeeper.io/SharonGrossman/constrct.js.svg)](https://greenkeeper.io/)
+</div>
 
 ## Description
 A to-be boilerplate application stack <b> constructed </b> with
