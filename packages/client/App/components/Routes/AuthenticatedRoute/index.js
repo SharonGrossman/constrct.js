@@ -47,7 +47,6 @@ export default ({ layout: Layout, component: Component, authRequired, ...rest })
   return authenticated && authRequired ? (
     <Route
       {...rest}
-      // eslint-disable-next-line react/jsx-no-bind
       render={props => (
         <Layout>
           <Component {...props} />
