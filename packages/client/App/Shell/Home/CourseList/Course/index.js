@@ -6,7 +6,12 @@ import { Row, Column } from 'mui-flex-layout';
 import { useHistory } from '../../../../Providers/HistoryProvider';
 
 const CourseCard = styled(Card)`
-  max-width: 345px;
+  height: 200px;
+  width: 500px;
+`;
+const CourseActionArea = styled(CardActionArea)`
+  height: 200px;
+  width: 500px;
 `;
 
 const Course = ({ course: { name, description, _id: id } }) => {
@@ -17,9 +22,9 @@ const Course = ({ course: { name, description, _id: id } }) => {
   };
 
   return (
-    <Row p={2} justifyContent={'center'} alignItems={'center'} width={'25%'} height={'240px'}>
+    <Row p={2} justifyContent={'center'} alignItems={'center'} width={'25%'}>
       <CourseCard>
-        <CardActionArea onClick={handleClick}>
+        <CourseActionArea onClick={handleClick}>
           <CardMedia>
             <Row justifyContent={'center'} alignItems={'center'} width={'100%'}>
               <LaptopChromebook />
@@ -33,7 +38,7 @@ const Course = ({ course: { name, description, _id: id } }) => {
               </Typography>
             </Column>
           </CardContent>
-        </CardActionArea>
+        </CourseActionArea>
       </CourseCard>
     </Row>
   );

@@ -13,7 +13,13 @@ export default () => {
   }, []);
 
   return (
-    <Row justifyContent={'flex-start'} alignItems={'flex-start'} flexWrap={'wrap'}>
+    <Row
+      justifyContent={'flex-start'}
+      alignItems={'flex-start'}
+      width={'100%'}
+      height={'100%'}
+      flexWrap={'wrap'}
+    >
       {courses.map(course => (
         <Course key={course._id} course={course} />
       ))}
