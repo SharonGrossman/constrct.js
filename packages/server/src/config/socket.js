@@ -4,7 +4,6 @@ import _ from 'lodash';
 
 // inject:socket-imports
 import courseSocket from '../api/course/course.socket';
-import taskSocket from '../api/task/task.socket';
 
 export default server => {
   const socketServer = socketio(server, {
@@ -27,5 +26,4 @@ export default server => {
 
   // inject:socket-usage
   courseSocket(getSockets);
-  taskSocket(getSockets);
 };

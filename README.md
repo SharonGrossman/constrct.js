@@ -43,6 +43,7 @@ A to-be boilerplate application stack <b> constructed </b> with
   * ```axios```
     * instanced axios with jwt token updates
   * ```formik``` & ```formik-material-ui```
+  * ```yup``` form validations
   * ```styled-components```
   * ```material-ui```
   * ```Webpack``` bundler

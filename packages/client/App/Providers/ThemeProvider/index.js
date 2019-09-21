@@ -28,7 +28,6 @@ export default props => {
   };
 
   useEffect(() => {
-    console.log(type);
     const newTheme = type === 'light' ? lightTheme : darkTheme;
 
     setTheme(createMuiTheme({ ...initialState, ...newTheme }));

@@ -1,7 +1,7 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Tooltip } from '@material-ui/core';
 import {
-  SchoolOutlined as Logo,
+  LocalShipping as Logo,
   ExitToApp as LogoutIcon,
   InvertColors as ThemeToggleIcon
 } from '@material-ui/icons';
@@ -14,7 +14,7 @@ import { useHistory } from '../../Providers/HistoryProvider';
 const ClickableTitle = styled(Typography)`
   cursor: pointer;
 `;
-const AcademyLogo = styled(Logo)`
+const ConstrctLogo = styled(Logo)`
   margin: 5px;
 `;
 
@@ -40,9 +40,9 @@ export default () => {
       <Toolbar variant={'dense'}>
         <Row width={'100%'}>
           <Row flexGrow={1} p={1} justifyContent={'start'} alignItems={'center'}>
-            <AcademyLogo />
+            <ConstrctLogo />
             <ClickableTitle onClick={handleTitleClick} variant={'h6'}>
-              {'Academy'}
+              {'Constrct.js'}
             </ClickableTitle>
           </Row>
           <Row p={1} justifyContent={'flex-end'}>
