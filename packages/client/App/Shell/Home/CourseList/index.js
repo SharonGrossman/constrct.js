@@ -1,15 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { Row } from 'mui-flex-layout';
+import { useNotification } from '../../../Providers/NotificationProvider';
 import { instance } from '../../../services/axios.service';
 import Course from './Course';
 
 export default () => {
   const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const { open } = useNotification();
+
+  const fetchCourses = async () => {
+    setLoading(true);
+    try {
+      const { data: courses } = await instance.get('/courses');
+
+      setLoading(false);
+      setCourses(courses);
+    } catch (error) {
+      const {
+        response: {
+          data: { message }
+        }
+      } = error;
+
+      setLoading(false);
+      open({ message });
+    }
+  };
 
   useEffect(() => {
-    instance.get('/courses').then(({ data }) => {
-      setCourses(data);
-    });
+    fetchCourses();
   }, []);
 
   return (

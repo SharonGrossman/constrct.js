@@ -19,12 +19,12 @@ const ConstrctLogo = styled(Logo)`
 `;
 
 export default () => {
-  const { updateToken } = useAuth();
+  const { removeToken } = useAuth();
   const { toggleTheme } = useTheme();
   const { navigate } = useHistory();
 
   const handleLogout = () => {
-    updateToken(null);
+    removeToken();
   };
 
   const handleTitleClick = () => {
