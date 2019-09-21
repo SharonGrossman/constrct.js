@@ -15,29 +15,30 @@ export default () => {
   const [loading, setLoading] = useState(false);
   const { navigate } = useHistory();
 
-  const handleLogin = ({ email, password }, { setSubmitting }) => {
+  const handleLogin = async ({ email, password }, { setSubmitting }) => {
     setLoading(true);
 
-    return login({ email, password })
-      .then(updateToken)
-      .then(loadUser)
-      .then(setUser)
-      .then(() => {
-        setAuthenticated(true);
-        setLoading(false);
-        navigate('/');
-      })
-      .catch(error => {
-        const {
-          response: {
-            data: { message }
-          }
-        } = error;
+    try {
+      const token = await login({ email, password });
 
-        setLoading(false);
-        setSubmitting(false);
-        open({ message });
-      });
+      updateToken(token);
+      const user = await loadUser();
+
+      setUser(user);
+      setAuthenticated(true);
+      setLoading(false);
+      navigate('/');
+    } catch (error) {
+      const {
+        response: {
+          data: { message }
+        }
+      } = error;
+
+      setLoading(false);
+      setSubmitting(false);
+      open({ message });
+    }
   };
 
   return (

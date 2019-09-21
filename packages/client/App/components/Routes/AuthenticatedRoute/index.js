@@ -18,19 +18,19 @@ export default ({ layout: Layout, component: Component, authRequired, ...rest })
 
   const userIsAuthenticating = token && !authenticated;
 
-  const authenticate = () => {
+  const authenticate = async () => {
     setLoading(true);
 
-    return loadUser()
-      .then(user => {
-        setUser(user);
-        setAuthenticated(true);
-        setLoading(false);
-      })
-      .catch(() => {
-        removeToken();
-        setLoading(false);
-      });
+    try {
+      const user = await loadUser();
+
+      setUser(user);
+      setAuthenticated(true);
+      setLoading(false);
+    } catch (error) {
+      removeToken();
+      setLoading(false);
+    }
   };
 
   useEffect(() => {

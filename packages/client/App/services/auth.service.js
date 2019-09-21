@@ -1,3 +1,7 @@
 import { instance } from './axios.service';
 
-export const loadUser = () => instance.get('/users/me').then(({ data: user }) => user);
+export const loadUser = async () => {
+  const { data: user } = await instance.get('/users/me');
+
+  return user;
+};

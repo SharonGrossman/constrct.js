@@ -7,13 +7,13 @@ import { loadUser } from '../../../services/auth.service';
 export default ({ layout: Layout, component: Component, authRequired, ...rest }) => {
   const { authenticated, token, setUser, setLoading, setAuthenticated } = useAuth();
 
-  const authenticate = () => {
+  const authenticate = async () => {
     setLoading(true);
-    loadUser().then(user => {
-      setUser(user);
-      setAuthenticated(true);
-      setLoading(false);
-    });
+    const user = await loadUser();
+
+    setUser(user);
+    setAuthenticated(true);
+    setLoading(false);
   };
 
   useEffect(() => {
