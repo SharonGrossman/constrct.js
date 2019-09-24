@@ -49,7 +49,7 @@ A to-be boilerplate application stack <b> constructed </b> with
   * ```Webpack``` bundler
   * ```mui-flex-layout``` - Flex layout using ```material-ui``` Box component
 * ```Babel```
-* Linting with ```ESLint``` & ```prettier```
+* Linting with ```ESLint``` & ```prettier``` & ```stylelint```
   * ```eslint-config-sharongrossman``` my customized config for Node & React
 * Utilities
   * ```husky```
