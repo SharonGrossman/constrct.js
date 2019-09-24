@@ -18,7 +18,7 @@ A to-be boilerplate application stack <b> constructed </b> with
   * API built with:
     * ```Express.js```
     * ```Mongoose```
-      * ```mongoose-plugin-seed``` database seeding
+      * ```mongoose-dependent-seed``` database seeding
     * ```Joi```
   * Auth built with:
     * ```JWT```

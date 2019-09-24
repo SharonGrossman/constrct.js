@@ -1,7 +1,7 @@
 import pify from 'pify';
 import { Schema } from 'mongoose';
 import { single as emailAddress } from 'email-address';
-import createSeedModel from 'mongoose-dependent-seed';
+import createSeed from 'mongoose-dependent-seed';
 import passportLocalMongoose from 'passport-local-mongoose';
 import seed from './user.seed';
 
@@ -63,4 +63,4 @@ UserSchema.pre('save', function(next) {
 // Use promises
 UserSchema.methods.setPassword = pify(UserSchema.methods.setPassword);
 
-export default createSeedModel('User', UserSchema, seed);
+export default createSeed('User', UserSchema, seed);

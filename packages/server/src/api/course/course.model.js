@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import createSeedModel from 'mongoose-dependent-seed';
+import createSeed from 'mongoose-dependent-seed';
 import seed from './course.seed';
 import { emitter } from './course.socket';
 
@@ -28,4 +28,4 @@ CourseSchema.post('findOneAndRemove', doc => {
   emitter.emit('findOneAndRemove', doc);
 });
 
-export default createSeedModel('Course', CourseSchema, seed);
+export default createSeed('Course', CourseSchema, seed);
