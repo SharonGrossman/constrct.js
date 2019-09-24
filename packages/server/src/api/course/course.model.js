@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import { createSeedModel } from 'mongoose-plugin-seed';
+import createSeedModel from 'mongoose-dependent-seed';
 import seed from './course.seed';
 import { emitter } from './course.socket';
 

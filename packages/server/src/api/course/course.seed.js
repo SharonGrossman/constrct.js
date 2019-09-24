@@ -1,9 +1,13 @@
+import User from '../user/user.model';
+
 export default {
-  seed: () => [
+  dependencies: [User],
+  seed: users => [
     {
       name: 'Web Development',
       description:
-        'In this course you will learn HTML, CSS & Javascript. We will also cover AngularJS or React, MongoDB, Node and npm and architecturing a web application (SPA)'
+        'In this course you will learn HTML, CSS & Javascript. We will also cover AngularJS or React, MongoDB, Node and npm and architecturing a web application (SPA)',
+      user: users[0]
     },
     {
       name: 'Infrastructure',

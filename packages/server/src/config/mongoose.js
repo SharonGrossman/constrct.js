@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import logger from 'env-bunyan';
-import { seed } from 'mongoose-plugin-seed';
+import { seed } from 'mongoose-dependent-seed';
 
 export default async () => {
   try {
@@ -9,6 +9,8 @@ export default async () => {
       useNewUrlParser: true,
       useCreateIndex: true
     });
+
+    logger.info('Connected to MongoDB');
   } catch (error) {
     logger.error('Failed connecting to MongoDB');
   }
@@ -24,4 +26,8 @@ export default async () => {
   } catch (error) {
     logger.error({ error }, 'Unable to populate database');
   }
+
+  mongoose.connection.on('error', err => {
+    logger.info(err);
+  });
 };
