@@ -11,6 +11,8 @@
 		"copy": "copyfiles package.json .env.defaults .env.schema dist",
 		"build": "rimraf dist && yarn babel && yarn copy",
 		"lint": "eslint src --fix",
+		"prestart": "yarn workspace client build",
+		"start": "yarn build && node dist/app.js",
 		"dev": "nodemon"
 	},
 	"keywords": [

@@ -13,7 +13,7 @@
     "lint": "lerna exec --parallel -- yarn lint",
     "lerna-publish": "lerna publish",
     "test": "yarn lint",
-    "prod:app": "yarn build && cd packages/server && node dist/app.js",
+    "prod": "yarn workspace server start",
     "generate": ""
   },
   "description": "App",

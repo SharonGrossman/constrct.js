@@ -1,5 +1,5 @@
 import 'dotenv-extended/config';
-import { join } from 'path';
+import { dirname, join } from 'path';
 import express from 'express';
 import morgan from 'morgan';
 import compression from 'compression';
@@ -18,7 +18,9 @@ import routes from './routes';
 
 export default () => {
   const app = express();
-  const clientPath = process.env.CLIENT_PATH.split('/');
+
+  const appRootDirectory = dirname(require.resolve('client/package.json'));
+  const appRoot = join(appRootDirectory, 'dist');
 
   app.use(helmet());
   app.use(urlencoded({ extended: false }));
@@ -26,8 +28,8 @@ export default () => {
   app.use(methodOverride());
   app.use(cookieParser());
   app.use(passport.initialize());
-  app.use(staticGzip(join(__dirname, ...clientPath)));
-  app.use(express.static(join(__dirname, ...clientPath)));
+  app.use(staticGzip(appRoot));
+  app.use(express.static(appRoot));
   app.use(compression());
 
   if (!inProduction) {
