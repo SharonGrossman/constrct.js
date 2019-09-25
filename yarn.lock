@@ -7150,9 +7150,10 @@ mongodb@3.3.2:
     require_optional "^1.0.1"
     safe-buffer "^5.1.2"
 
-mongoose-dependent-seed@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.npmjs.org/mongoose-dependent-seed/-/mongoose-dependent-seed-0.5.0.tgz#df235163fa9ec5c7b8fd58eeb2714d7f43f5824d"
+mongoose-dependent-seed@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/mongoose-dependent-seed/-/mongoose-dependent-seed-0.6.1.tgz#8f3ae5c27e66cee0d55846679939a77104e41c17"
+  integrity sha512-SKNwzv0zx9QsrlQfyDFT089kE89hWscu+BKNQ1MbJr8v/741u45X//zj4NGJtKzEHpjDm+DRtq2A4WnPemg8Nw==
   dependencies:
     dependency-graph "^0.8.0"
     mongoose "^5.6.10"
