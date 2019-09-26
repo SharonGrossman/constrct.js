@@ -1,14 +1,11 @@
 import { join } from 'path';
 import createError from 'http-errors';
-
-// inject:route-imports
+import { getClientIndexPath } from '../../utils/path.resolver';
 import courseRoute from '../../api/course';
 import userRoute from '../../api/user';
-
 import authRoute from '../../auth';
 
 export default app => {
-  // inject:route-usage
   app.use('/api/courses', courseRoute);
   app.use('/api/users', userRoute);
 
@@ -19,9 +16,5 @@ export default app => {
     next(createError(404));
   });
 
-  app
-    .route('/*')
-    .get((req, res) =>
-      res.sendFile(join(__dirname, '..', '..', '..', '..', 'client', 'index.html'))
-    );
+  app.route('/*').get((req, res) => res.sendFile(getClientIndexPath()));
 };

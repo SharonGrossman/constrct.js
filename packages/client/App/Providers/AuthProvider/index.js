@@ -1,11 +1,10 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { updateHeaderToken } from '../../services/axios.service';
+import { useAxios } from '../AxiosProvider';
 
 const initialState = {
   token: null,
   user: null,
-  authenticated: false,
-  loading: false
+  authenticated: false
 };
 
 const AuthContext = createContext(initialState);
@@ -19,6 +18,7 @@ export default props => {
   const [user, setUser] = useState(null);
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { updateHeaderToken } = useAxios();
 
   const updateToken = token => {
     setToken(token);

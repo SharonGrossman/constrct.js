@@ -1,5 +1,3 @@
-import 'dotenv-extended/config';
-import { dirname, join } from 'path';
 import express from 'express';
 import morgan from 'morgan';
 import compression from 'compression';
@@ -13,14 +11,12 @@ import mongooseErrors from 'express-mongoose-errors';
 import jsonErrorHandler from 'express-json-error-handler';
 import inProduction from 'in-production';
 import logger from 'env-bunyan';
+import { getClientDistPath } from '../../utils/path.resolver';
 
 import routes from './routes';
 
 export default () => {
   const app = express();
-
-  const appRootDirectory = dirname(require.resolve('client/package.json'));
-  const appRoot = join(appRootDirectory, 'dist');
 
   app.use(helmet());
   app.use(urlencoded({ extended: false }));
@@ -28,8 +24,14 @@ export default () => {
   app.use(methodOverride());
   app.use(cookieParser());
   app.use(passport.initialize());
-  app.use(staticGzip(appRoot));
-  app.use(express.static(appRoot));
+
+  if (inProduction) {
+    const staticPath = getClientDistPath();
+
+    app.use(staticGzip(staticPath));
+    app.use(express.static(staticPath));
+  }
+
   app.use(compression());
 
   if (!inProduction) {

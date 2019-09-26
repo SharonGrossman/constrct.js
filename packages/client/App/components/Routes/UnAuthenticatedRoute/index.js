@@ -1,19 +1,17 @@
 import React, { useEffect } from 'react';
 import { Route, Redirect } from 'react-router';
 import { useAuth } from '../../../Providers/AuthProvider';
-import { updateHeaderToken } from '../../../services/axios.service';
-import { loadUser } from '../../../services/auth.service';
+import { useAxios } from '../../../Providers/AxiosProvider';
 
 export default ({ layout: Layout, component: Component, authRequired, ...rest }) => {
-  const { authenticated, token, setUser, setLoading, setAuthenticated } = useAuth();
+  const { authenticated, token, setUser, setAuthenticated } = useAuth();
+  const { get, updateHeaderToken } = useAxios();
 
   const authenticate = async () => {
-    setLoading(true);
-    const user = await loadUser();
+    const data = await get({ url: '/api/users/me' });
 
-    setUser(user);
+    setUser(data);
     setAuthenticated(true);
-    setLoading(false);
   };
 
   useEffect(() => {

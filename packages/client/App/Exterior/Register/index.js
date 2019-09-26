@@ -1,42 +1,32 @@
-import React, { useState } from 'react';
-import { CircularProgress, Typography } from '@material-ui/core';
+import React from 'react';
+import { Typography } from '@material-ui/core';
 import { Column, Padded } from 'mui-flex-layout';
 import { useAuth } from '../../Providers/AuthProvider';
-import { loadUser } from '../../services/auth.service';
-import RegisterForm from '../components/RegisterForm';
 import LinkButton from '../../components/LinkButton';
 import { useHistory } from '../../Providers/HistoryProvider';
 import { useNotification } from '../../Providers/NotificationProvider';
-import { register } from './register.service';
+import { useAxios } from '../../Providers/AxiosProvider';
+import RegisterForm from './RegisterForm';
 
 export default () => {
   const { setAuthenticated, setUser, updateToken } = useAuth();
   const { open } = useNotification();
-  const [loading, setLoading] = useState(false);
   const { navigate } = useHistory();
+  const { get, post } = useAxios();
 
   const handleRegister = async ({ email, password, name }, { setSubmitting }) => {
-    setLoading(true);
     try {
-      const token = await register({ email, password, name });
+      const { token } = await post({ url: '/api/users', body: { email, password, name } });
 
       updateToken(token);
-      const user = await loadUser();
+      const user = await get({ url: '/api/users/me' });
 
       setUser(user);
       setAuthenticated(true);
-      setLoading(false);
       navigate('/');
     } catch (error) {
-      const {
-        response: {
-          data: { message }
-        }
-      } = error;
-
-      setLoading(false);
       setSubmitting(false);
-      open({ message });
+      open({ message: error });
     }
   };
 
@@ -49,7 +39,6 @@ export default () => {
       <Padded>
         <LinkButton to={'/login'} message={'or Go back to Login'} p={1} color={'secondary'} />
       </Padded>
-      {loading && <CircularProgress size={64} color={'secondary'} />}
     </Column>
   );
 };
