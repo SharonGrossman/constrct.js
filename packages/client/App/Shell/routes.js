@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './Home';
 import Course from './Course';
+import Profile from './Profile';
 import Shell from '.';
 
 const base = {
@@ -13,6 +14,12 @@ export default [
     path: '/',
     name: 'home',
     component: Home,
+    ...base
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: Profile,
     ...base
   },
   {

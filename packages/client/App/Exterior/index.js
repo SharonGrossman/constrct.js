@@ -1,13 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Row, Column, Padded } from 'mui-flex-layout';
-import { LocalShipping } from '@material-ui/icons';
 import { Typography } from '@material-ui/core';
+import AppIcon from '../components/AppIcon';
 
-const logoSize = '150px !important';
-
-const Construct = styled(LocalShipping)`
-  font-size: ${logoSize};
+const BiggerAppIcon = styled(AppIcon)`
+  font-size: 150px !important;
 `;
 
 export default ({ children }) => (
@@ -17,7 +15,7 @@ export default ({ children }) => (
       <Padded>
         <Typography variant={'body1'}>{'monorepo style application stack'}</Typography>
       </Padded>
-      <Construct />
+      <BiggerAppIcon />
     </Column>
     <hr />
     <Column width={'100%'} height={'100%'}>

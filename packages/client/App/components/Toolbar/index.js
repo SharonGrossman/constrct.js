@@ -1,12 +1,13 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Tooltip } from '@material-ui/core';
 import {
-  LocalShipping as Logo,
   ExitToApp as LogoutIcon,
-  InvertColors as ThemeToggleIcon
+  InvertColors as ThemeToggleIcon,
+  AccountCircleOutlined as ProfileIcon
 } from '@material-ui/icons';
 import styled from 'styled-components';
 import { Row } from 'mui-flex-layout';
+import AppIcon from '../AppIcon';
 import { useAuth } from '../../Providers/AuthProvider';
 import { useTheme } from '../../Providers/ThemeProvider';
 import { useHistory } from '../../Providers/HistoryProvider';
@@ -14,7 +15,7 @@ import { useHistory } from '../../Providers/HistoryProvider';
 const ClickableTitle = styled(Typography)`
   cursor: pointer;
 `;
-const ConstrctLogo = styled(Logo)`
+const MarginAppIcon = styled(AppIcon)`
   margin: 5px;
 `;
 
@@ -35,17 +36,26 @@ export default () => {
     toggleTheme();
   };
 
+  const handleProfile = () => {
+    navigate('/profile');
+  };
+
   return (
     <AppBar position={'static'} color={'inherit'}>
       <Toolbar variant={'dense'}>
         <Row width={'100%'}>
           <Row flexGrow={1} p={1} justifyContent={'start'} alignItems={'center'}>
-            <ConstrctLogo />
+            <MarginAppIcon />
             <ClickableTitle onClick={handleTitleClick} variant={'h6'}>
               {'Constrct.js'}
             </ClickableTitle>
           </Row>
           <Row p={1} justifyContent={'flex-end'}>
+            <Tooltip title={'Profile'}>
+              <IconButton onClick={handleProfile} color={'secondary'}>
+                <ProfileIcon />
+              </IconButton>
+            </Tooltip>
             <Tooltip title={'Toggle Theme'}>
               <IconButton onClick={handleTheme} color={'secondary'}>
                 <ThemeToggleIcon />
