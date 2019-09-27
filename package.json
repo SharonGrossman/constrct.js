@@ -13,12 +13,11 @@
     "lint": "lerna exec --parallel -- yarn lint",
     "lerna-publish": "lerna publish",
     "test": "yarn lint",
-    "prod": "yarn workspace server start",
-    "generate": ""
+    "prod": "yarn workspace server start"
   },
-  "description": "App",
+  "description": "A boilerplate application stack",
   "main": "index.js",
-  "repository": "https://github.com/SharonGrossman/academy.git",
+  "repository": "https://github.com/SharonGrossman/constrct.js.git",
   "author": "Sharon Grossman <sharong1337@gmail.com>",
   "license": "MIT",
   "devDependencies": {

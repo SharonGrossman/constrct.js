@@ -1,8 +1,7 @@
 import React from 'react';
 import { Router, Switch, Redirect } from 'react-router-dom';
 import App from './App';
-import AuthenticatedRoute from './App/components/Routes/AuthenticatedRoute';
-import UnAuthenticatedRoute from './App/components/Routes/UnAuthenticatedRoute';
+import ResolvedRoute from './App/components/ResolvedRoute';
 import shellRoutes from './App/Shell/routes';
 import exteriorRoutes from './App/Exterior/routes';
 import { useHistory } from './App/Providers/HistoryProvider';
@@ -16,13 +15,9 @@ export default () => {
     <Router history={history}>
       <App>
         <Switch>
-          {routes.map(route =>
-            route.authRequired ? (
-              <AuthenticatedRoute exact key={route.name} {...route} />
-            ) : (
-              <UnAuthenticatedRoute exact key={route.name} {...route} />
-            )
-          )}
+          {routes.map(route => (
+            <ResolvedRoute exact key={route.name} {...route} />
+          ))}
           <Redirect to={'/'} from={'*'} />
         </Switch>
       </App>
