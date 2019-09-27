@@ -10,7 +10,7 @@ constrct.js
 </div>
 
 ## Description
-A to-be boilerplate application stack <b> constructed </b> with
+A boilerplate application stack <b> constructed </b> with
 
 ## Features
 * ```Lerna``` package monorepo style
@@ -29,17 +29,17 @@ A to-be boilerplate application stack <b> constructed </b> with
     * Home
     * Register
     * Login
-    * (Course, Tasks) (wip)
+    * Course (a sample model)
   * Providers (useContext)
     * ThemeProvider (theme toggling & modification)
     * HistoryProvider (navigation with ```history```)
     * NotificationProvider (```material-ui``` notifications)
+    * LoadingProvider (a progress bar used when fetching data)
     * AuthProvider (handling token & user state)
+    * AxiosProvider (provides axios methods, seperated by different axios instances for auth & api)
   * Routing
     * abstract layout routing
-      * Authenticated routes
-      * Unauthenticated routes
-    * Redirects
+      * ResolvedRoute (allows routes or redirects by the current user auth state)
   * ```axios```
     * instanced axios with jwt token updates
   * ```formik``` & ```formik-material-ui```
