@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLoading } from '../Providers/LoadingProvider';
 import { resolveError } from '../resolvers/error.resolver';
-import { resolveUrl } from '../resolvers/axios.resolver';
+import { extractInstanceFromUrl } from '../resolvers/axios.resolver';
 
 const useAxios = () => {
   const { setLoading } = useLoading();
@@ -9,7 +9,7 @@ const useAxios = () => {
   const get = async ({ url }) => {
     setLoading(true);
     try {
-      const [instance, apiUrl] = resolveUrl(url);
+      const [instance, apiUrl] = extractInstanceFromUrl(url);
 
       const { data } = await instance.get(apiUrl);
 
@@ -26,7 +26,7 @@ const useAxios = () => {
   const post = async ({ url, body }) => {
     setLoading(true);
     try {
-      const [instance, apiUrl] = resolveUrl(url);
+      const [instance, apiUrl] = extractInstanceFromUrl(url);
 
       const { data } = await instance.post(apiUrl, body);
 

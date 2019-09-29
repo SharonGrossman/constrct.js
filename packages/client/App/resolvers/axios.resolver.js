@@ -22,7 +22,7 @@ instances.api.interceptors.request.use(config => ({
   headers: { ...config.headers, Authorization: `Bearer ${getFromLocalStorage({ key: 'token' })}` }
 }));
 
-export const resolveUrl = url => {
+export const extractInstanceFromUrl = url => {
   const [, prefix, ...rest] = url.split('/');
   const api = [...rest].join('/');
 
