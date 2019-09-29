@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core';
 import { Column } from 'mui-flex-layout';
 import { useParams } from 'react-router';
 import { useNotification } from '../../Providers/NotificationProvider';
-import { useAxios } from '../../Providers/AxiosProvider';
+import useAxios from '../../hooks/axios.hook';
 
 export default () => {
   const [course, setCourse] = useState({});

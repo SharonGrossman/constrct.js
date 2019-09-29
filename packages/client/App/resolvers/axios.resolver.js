@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getFromLocalStorage } from '../../resolvers/localStorage.resolver';
+import { getFromLocalStorage } from './localStorage.resolver';
 
 const instances = {
   api: axios.create({

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { useAxios } from '../AxiosProvider';
+import useAxios from '../../hooks/axios.hook';
 import { resolveAuthError } from '../../resolvers/error.resolver';
-import instances from '../AxiosProvider/axios';
+import instances from '../../resolvers/axios.resolver';
 import {
   getFromLocalStorage,
   removeFromLocalStorage,

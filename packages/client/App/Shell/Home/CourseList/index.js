@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Row } from 'mui-flex-layout';
 import { useNotification } from '../../../Providers/NotificationProvider';
-import { useAxios } from '../../../Providers/AxiosProvider';
+import useAxios from '../../../hooks/axios.hook';
 import Course from './Course';
 
 export default () => {

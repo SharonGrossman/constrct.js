@@ -1,11 +1,11 @@
 import React, { useContext, createContext } from 'react';
-import { useLoading } from '../LoadingProvider';
-import { resolveError } from '../../resolvers/error.resolver';
-import { resolveUrl } from './axios';
+import { useLoading } from '../Providers/LoadingProvider';
+import { resolveError } from '../resolvers/error.resolver';
+import { resolveUrl } from '../resolvers/axios.resolver';
 
 const AxiosContext = createContext();
 
-export default props => {
+const useAxios = () => {
   const { setLoading } = useLoading();
 
   const get = async ({ url }) => {
@@ -42,15 +42,7 @@ export default props => {
     }
   };
 
-  return (
-    <AxiosContext.Provider
-      value={{
-        get,
-        post
-      }}
-      {...props}
-    />
-  );
+  return { get, post };
 };
 
-export const useAxios = () => useContext(AxiosContext);
+export default useAxios;

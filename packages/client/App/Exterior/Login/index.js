@@ -4,7 +4,7 @@ import { Column, Padded } from 'mui-flex-layout';
 import { useHistory } from 'react-router';
 import { useAuth } from '../../Providers/AuthProvider';
 import LinkButton from '../../components/LinkButton';
-import { useAxios } from '../../Providers/AxiosProvider';
+import useAxios from '../../hooks/axios.hook';
 import { useNotification } from '../../Providers/NotificationProvider';
 import LoginForm from './LoginForm';
 
