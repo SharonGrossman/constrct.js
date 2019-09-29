@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import { Row } from 'mui-flex-layout';
 import { useHistory } from 'react-router';
 import AppIcon from '../AppIcon';
-import { useAuth } from '../../Providers/AuthProvider';
+import useAuth from '../../hooks/auth.hook';
 import { useTheme } from '../../Providers/ThemeProvider';
 
 const ClickableTitle = styled(Typography)`
@@ -21,12 +21,12 @@ const MarginAppIcon = styled(AppIcon)`
 `;
 
 export default () => {
-  const { removeToken } = useAuth();
+  const { logout } = useAuth();
   const { toggleTheme } = useTheme();
   const { push } = useHistory();
 
   const handleLogout = () => {
-    removeToken();
+    logout();
   };
 
   const handleTitleClick = () => {

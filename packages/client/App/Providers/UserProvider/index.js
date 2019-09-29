@@ -7,27 +7,23 @@ import {
 } from '../../resolvers/localStorage.resolver';
 
 const initialState = {
-  user: null,
-  authenticated: false
+  user: null
 };
 
 const UserContext = createContext(initialState);
 
 export default props => {
   const [user, setUser] = useState(null);
-  const [authenticated, setAuthenticated] = useState(false);
   const { get } = useAxios();
 
-  const authenticate = async () => {
+  const fetchUser = async () => {
     const data = await get({ url: '/api/users/me' });
 
     setUser(data);
-    setAuthenticated(true);
   };
 
   const removeUser = () => {
     setUser(null);
-    setAuthenticated(false);
   };
 
   return (
@@ -35,8 +31,7 @@ export default props => {
       value={{
         user,
         removeUser,
-        authenticated,
-        authenticate
+        fetchUser
       }}
       {...props}
     />

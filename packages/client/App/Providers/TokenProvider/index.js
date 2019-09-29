@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import useAxios from '../../hooks/axios.hook';
 import { useUser } from '../UserProvider';
 import { resolveAuthError } from '../../resolvers/error.resolver';
 import instances from '../../resolvers/axios.resolver';
@@ -10,23 +9,20 @@ import {
 } from '../../resolvers/localStorage.resolver';
 
 const initialState = {
-  token: null,
-  user: null,
-  authenticated: false
+  token: null
 };
 
-const AuthContext = createContext(initialState);
+const TokenContext = createContext(initialState);
 
 export default props => {
   const [token, setToken] = useState(getFromLocalStorage({ key: 'token' }));
-  const { get } = useAxios();
-  const { authenticate, authenticated, removeUser } = useUser();
+  const { fetchUser, user, removeUser } = useUser();
 
   const resolveToken = async token => {
     setToken(token);
     if (token) {
       setLocalStorage({ key: 'token', value: token });
-      await authenticate();
+      await fetchUser();
     } else {
       removeUser();
       removeFromLocalStorage({ key: 'token' });
@@ -35,10 +31,10 @@ export default props => {
     }
   };
 
-  const removeToken = () => resolveToken(null);
+  const removeToken = () => setToken(null);
 
   const handleResponseError = error => {
-    const { expireToken } = resolveAuthError({ error, token, authenticated });
+    const { expireToken } = resolveAuthError({ error, token, user });
 
     if (expireToken) {
       removeToken();
@@ -52,12 +48,17 @@ export default props => {
 
   useEffect(() => {
     resolveToken(token);
+  }, [token]);
+
+  useEffect(() => {
+    resolveToken(token);
   }, []);
 
   return (
-    <AuthContext.Provider
+    <TokenContext.Provider
       value={{
         token,
+        setToken,
         resolveToken,
         removeToken
       }}
@@ -66,4 +67,4 @@ export default props => {
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useToken = () => useContext(TokenContext);

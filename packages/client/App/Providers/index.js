@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthProvider from './AuthProvider';
+import TokenProvider from './TokenProvider';
 import ThemeProvider from './ThemeProvider';
 import NotificationProvider from './NotificationProvider';
 import LoadingProvider from './LoadingProvider';
@@ -10,7 +10,7 @@ export default ({ children }) => (
     <NotificationProvider>
       <LoadingProvider>
         <UserProvider>
-          <AuthProvider>{children}</AuthProvider>
+          <TokenProvider>{children}</TokenProvider>
         </UserProvider>
       </LoadingProvider>
     </NotificationProvider>

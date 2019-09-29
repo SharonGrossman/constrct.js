@@ -1,9 +1,7 @@
-import React, { useContext, createContext } from 'react';
+import React from 'react';
 import { useLoading } from '../Providers/LoadingProvider';
 import { resolveError } from '../resolvers/error.resolver';
 import { resolveUrl } from '../resolvers/axios.resolver';
-
-const AxiosContext = createContext();
 
 const useAxios = () => {
   const { setLoading } = useLoading();

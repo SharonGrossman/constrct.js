@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react';
 import { Route, Redirect } from 'react-router';
 import LoadingScreen from '../LoadingScreen';
-import { useAuth } from '../../Providers/AuthProvider';
+import { useToken } from '../../Providers/TokenProvider';
 import { useUser } from '../../Providers/UserProvider';
 
 export default ({ layout: Layout, component: Component, authRequired, ...rest }) => {
-  const { token } = useAuth();
-  const { authenticated } = useUser();
-  const hasToken = token && !authenticated;
+  const { token } = useToken();
+  const { user } = useUser();
+  const hasToken = token && !user;
 
   if (hasToken) {
     return <LoadingScreen />;
   }
 
-  return (authenticated && authRequired) || (!authenticated && !authRequired) ? (
+  return (user && authRequired) || (!user && !authRequired) ? (
     <Route
       {...rest}
       render={props => (

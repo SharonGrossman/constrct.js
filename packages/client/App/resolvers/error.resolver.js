@@ -38,11 +38,11 @@ export const resolveError = ({ error }) => {
   return GENERAL_ERROR_MESSAGE;
 };
 
-export const resolveAuthError = ({ error, token, authenticated }) => {
+export const resolveAuthError = ({ error, token, user }) => {
   const UNAUTHORIZED_STATUSES = [401, 403, 500];
   const status = extractStatusCode(error);
 
-  const expiredToken = (token || authenticated) && !getFromLocalStorage({ key: 'token' });
+  const expiredToken = (token || user) && !getFromLocalStorage({ key: 'token' });
 
   if (UNAUTHORIZED_STATUSES.includes(status) && expiredToken) {
     return { expireToken: true };
