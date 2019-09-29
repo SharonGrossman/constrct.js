@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useUser } from '../UserProvider';
 import { resolveAuthError } from '../../resolvers/error.resolver';
-import instances from '../../resolvers/axios.resolver';
+import { api } from '../../resolvers/axios.resolver';
 import {
   getFromLocalStorage,
   removeFromLocalStorage,
@@ -23,12 +23,12 @@ export default props => {
     if (token) {
       setLocalStorage({ key: 'token', value: token });
       await fetchUser();
-    } else {
-      removeUser();
-      removeFromLocalStorage({ key: 'token' });
 
       return;
     }
+
+    removeUser();
+    removeFromLocalStorage({ key: 'token' });
   };
 
   const removeToken = () => setToken(null);
@@ -44,13 +44,24 @@ export default props => {
     throw error;
   };
 
-  instances.api.interceptors.response.use(response => response, handleResponseError);
+  const initializeInterceptors = () => {
+    api.interceptors.response.use(response => response, handleResponseError);
+
+    api.interceptors.request.use(config => ({
+      ...config,
+      headers: {
+        ...config.headers,
+        Authorization: `Bearer ${getFromLocalStorage({ key: 'token' })}`
+      }
+    }));
+  };
 
   useEffect(() => {
     resolveToken(token);
   }, [token]);
 
   useEffect(() => {
+    initializeInterceptors();
     resolveToken(token);
   }, []);
 

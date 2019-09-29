@@ -1,26 +1,22 @@
 import axios from 'axios';
 import { getFromLocalStorage } from './localStorage.resolver';
 
-const instances = {
-  api: axios.create({
-    baseURL: '/api',
-    responseType: 'json',
-    config: {
-      headers: {
-        Authorization: `Bearer ${getFromLocalStorage({ key: 'token' })}`
-      }
+export const api = axios.create({
+  baseURL: '/api',
+  responseType: 'json',
+  config: {
+    headers: {
+      Authorization: `Bearer ${getFromLocalStorage({ key: 'token' })}`
     }
-  }),
-  auth: axios.create({
-    baseURL: '/auth',
-    responseType: 'json'
-  })
-};
+  }
+});
 
-instances.api.interceptors.request.use(config => ({
-  ...config,
-  headers: { ...config.headers, Authorization: `Bearer ${getFromLocalStorage({ key: 'token' })}` }
-}));
+export const auth = axios.create({
+  baseURL: '/auth',
+  responseType: 'json'
+});
+
+const instances = { auth, api };
 
 export const extractInstanceFromUrl = url => {
   const [, prefix, ...rest] = url.split('/');
@@ -28,5 +24,3 @@ export const extractInstanceFromUrl = url => {
 
   return [instances[prefix], api];
 };
-
-export default instances;
