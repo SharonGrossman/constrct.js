@@ -2,6 +2,7 @@ import React from 'react';
 import Home from './Home';
 import Course from './Course';
 import Profile from './Profile';
+import Admin from './Admin';
 import Shell from '.';
 
 const base = {
@@ -9,23 +10,30 @@ const base = {
   authRequired: true
 };
 
-export default [
+let routes = [
   {
     path: '/',
     name: 'home',
-    component: Home,
-    ...base
+    component: Home
   },
   {
     path: '/profile',
     name: 'profile',
-    component: Profile,
-    ...base
+    component: Profile
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    admin: true,
+    component: Admin
   },
   {
     path: '/course/:id',
     name: 'course',
-    component: Course,
-    ...base
+    component: Course
   }
 ];
+
+routes = routes.map(route => ({ ...base, ...route }));
+
+export default routes;

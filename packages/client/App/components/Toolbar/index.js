@@ -3,7 +3,8 @@ import { AppBar, Toolbar, Typography, IconButton, Tooltip } from '@material-ui/c
 import {
   ExitToApp as LogoutIcon,
   InvertColors as ThemeToggleIcon,
-  AccountCircleOutlined as ProfileIcon
+  AccountCircleOutlined as ProfileIcon,
+  SupervisedUserCircleOutlined as AdminIcon
 } from '@material-ui/icons';
 import styled from 'styled-components';
 import { Row } from 'mui-flex-layout';
@@ -32,6 +33,10 @@ export default () => {
     push('/');
   };
 
+  const handleAdmin = () => {
+    push('/admin');
+  };
+
   const handleTheme = () => {
     toggleTheme();
   };
@@ -54,6 +59,11 @@ export default () => {
             <Tooltip title={'Profile'}>
               <IconButton onClick={handleProfile} color={'secondary'}>
                 <ProfileIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title={'Admin'}>
+              <IconButton onClick={handleAdmin} color={'secondary'}>
+                <AdminIcon />
               </IconButton>
             </Tooltip>
             <Tooltip title={'Toggle Theme'}>

@@ -37,7 +37,7 @@ export default props => {
     } else {
       setAuthenticated(false);
       setUser(null);
-      removeFromLocalStorage();
+      removeFromLocalStorage({ key: 'token' });
 
       return;
     }
