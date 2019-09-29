@@ -50,7 +50,7 @@ export default props => {
 
     if (expireToken) {
       removeToken();
-      error = { ...error };
+      error = { ...error, general: true };
     }
 
     throw error;
