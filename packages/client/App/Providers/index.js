@@ -3,12 +3,15 @@ import AuthProvider from './AuthProvider';
 import ThemeProvider from './ThemeProvider';
 import NotificationProvider from './NotificationProvider';
 import LoadingProvider from './LoadingProvider';
+import UserProvider from './UserProvider';
 
 export default ({ children }) => (
   <ThemeProvider>
     <NotificationProvider>
       <LoadingProvider>
-        <AuthProvider>{children}</AuthProvider>
+        <UserProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </UserProvider>
       </LoadingProvider>
     </NotificationProvider>
   </ThemeProvider>

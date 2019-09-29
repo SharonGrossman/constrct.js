@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import useAxios from '../../hooks/axios.hook';
+import { useUser } from '../UserProvider';
 import { resolveAuthError } from '../../resolvers/error.resolver';
 import instances from '../../resolvers/axios.resolver';
 import {
@@ -18,16 +19,8 @@ const AuthContext = createContext(initialState);
 
 export default props => {
   const [token, setToken] = useState(getFromLocalStorage({ key: 'token' }));
-  const [user, setUser] = useState(null);
-  const [authenticated, setAuthenticated] = useState(false);
   const { get } = useAxios();
-
-  const authenticate = async () => {
-    const data = await get({ url: '/api/users/me' });
-
-    setUser(data);
-    setAuthenticated(true);
-  };
+  const { authenticate, authenticated, removeUser } = useUser();
 
   const resolveToken = async token => {
     setToken(token);
@@ -35,8 +28,7 @@ export default props => {
       setLocalStorage({ key: 'token', value: token });
       await authenticate();
     } else {
-      setAuthenticated(false);
-      setUser(null);
+      removeUser();
       removeFromLocalStorage({ key: 'token' });
 
       return;
@@ -65,10 +57,6 @@ export default props => {
   return (
     <AuthContext.Provider
       value={{
-        setAuthenticated,
-        setUser,
-        user,
-        authenticated,
         token,
         resolveToken,
         removeToken
