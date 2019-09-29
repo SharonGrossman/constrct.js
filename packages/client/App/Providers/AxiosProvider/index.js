@@ -1,49 +1,23 @@
-import React, { createContext, useState, useContext } from 'react';
-import axios from 'axios';
+import React, { useContext, createContext } from 'react';
 import { useLoading } from '../LoadingProvider';
+import { resolveError } from '../../resolvers/error.resolver';
+import { resolveUrl } from './axios';
 
 const AxiosContext = createContext();
 
-const instances = {
-  api: axios.create({
-    baseURL: '/api',
-    responseType: 'json'
-  }),
-  auth: axios.create({
-    baseURL: '/auth',
-    responseType: 'json'
-  })
-};
-
-const resolveUrl = url => {
-  const [, prefix, ...rest] = url.split('/');
-  const api = [...rest].join('/');
-
-  return [instances[prefix], api];
-};
-
 export default props => {
   const { setLoading } = useLoading();
-  const { children } = props;
-
-  const updateHeaderToken = token => {
-    instances.api.defaults.headers.Authorization = `Bearer ${token}`;
-  };
 
   const get = async ({ url }) => {
     setLoading(true);
-    const [instance, apiUrl] = resolveUrl(url);
-
     try {
+      const [instance, apiUrl] = resolveUrl(url);
+
       const { data } = await instance.get(apiUrl);
 
       return data;
     } catch (error) {
-      const {
-        response: {
-          data: { message }
-        }
-      } = error;
+      const message = resolveError({ error });
 
       throw message;
     } finally {
@@ -53,18 +27,14 @@ export default props => {
 
   const post = async ({ url, body }) => {
     setLoading(true);
-    const [instance, apiUrl] = resolveUrl(url);
-
     try {
+      const [instance, apiUrl] = resolveUrl(url);
+
       const { data } = await instance.post(apiUrl, body);
 
       return data;
     } catch (error) {
-      const {
-        response: {
-          data: { message }
-        }
-      } = error;
+      const message = resolveError({ error });
 
       throw message;
     } finally {
@@ -73,9 +43,13 @@ export default props => {
   };
 
   return (
-    <AxiosContext.Provider value={{ get, post, updateHeaderToken }} {...props}>
-      {children}
-    </AxiosContext.Provider>
+    <AxiosContext.Provider
+      value={{
+        get,
+        post
+      }}
+      {...props}
+    />
   );
 };
 

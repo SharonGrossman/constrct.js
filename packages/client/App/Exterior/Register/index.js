@@ -2,27 +2,23 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 import { Column, Padded } from 'mui-flex-layout';
 import { useAuth } from '../../Providers/AuthProvider';
+import { useAxios } from '../../Providers/AxiosProvider';
 import LinkButton from '../../components/LinkButton';
 import { useHistory } from '../../Providers/HistoryProvider';
 import { useNotification } from '../../Providers/NotificationProvider';
-import { useAxios } from '../../Providers/AxiosProvider';
 import RegisterForm from './RegisterForm';
 
 export default () => {
-  const { setAuthenticated, setUser, updateToken } = useAuth();
+  const { resolveToken } = useAuth();
   const { open } = useNotification();
   const { navigate } = useHistory();
-  const { get, post } = useAxios();
+  const { post } = useAxios();
 
   const handleRegister = async ({ email, password, name }, { setSubmitting }) => {
     try {
       const { token } = await post({ url: '/api/users', body: { email, password, name } });
 
-      updateToken(token);
-      const user = await get({ url: '/api/users/me' });
-
-      setUser(user);
-      setAuthenticated(true);
+      resolveToken(token);
       navigate('/');
     } catch (error) {
       setSubmitting(false);

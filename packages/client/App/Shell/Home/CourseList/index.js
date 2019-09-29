@@ -15,6 +15,7 @@ export default () => {
 
       setCourses(courses);
     } catch (error) {
+      console.log(error);
       open({ message: error });
     }
   };

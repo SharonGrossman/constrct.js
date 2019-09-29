@@ -4,25 +4,21 @@ import { Column, Padded } from 'mui-flex-layout';
 import { useAuth } from '../../Providers/AuthProvider';
 import LinkButton from '../../components/LinkButton';
 import { useHistory } from '../../Providers/HistoryProvider';
-import { useNotification } from '../../Providers/NotificationProvider';
 import { useAxios } from '../../Providers/AxiosProvider';
+import { useNotification } from '../../Providers/NotificationProvider';
 import LoginForm from './LoginForm';
 
 export default () => {
-  const { setAuthenticated, setUser, updateToken } = useAuth();
+  const { resolveToken } = useAuth();
   const { open } = useNotification();
   const { navigate } = useHistory();
-  const { get, post } = useAxios();
+  const { post } = useAxios();
 
   const handleLogin = async ({ email, password }, { setSubmitting }) => {
     try {
       const { token } = await post({ url: '/auth/local', body: { email, password } });
 
-      updateToken(token);
-      const user = await get({ url: '/api/users/me' });
-
-      setUser(user);
-      setAuthenticated(true);
+      await resolveToken(token);
       navigate('/');
     } catch (error) {
       setSubmitting(false);
