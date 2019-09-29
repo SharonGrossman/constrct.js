@@ -3,9 +3,9 @@ import { useAxios } from '../AxiosProvider';
 import { resolveAuthError } from '../../resolvers/error.resolver';
 import instances from '../AxiosProvider/axios';
 import {
-  getTokenFromLocalStorage,
-  removeTokenFromLocalStorage,
-  setLocalStorageToken
+  getFromLocalStorage,
+  removeFromLocalStorage,
+  setLocalStorage
 } from '../../resolvers/localStorage.resolver';
 
 const initialState = {
@@ -17,7 +17,7 @@ const initialState = {
 const AuthContext = createContext(initialState);
 
 export default props => {
-  const [token, setToken] = useState(getTokenFromLocalStorage());
+  const [token, setToken] = useState(getFromLocalStorage({ key: 'token' }));
   const [user, setUser] = useState(null);
   const [authenticated, setAuthenticated] = useState(false);
   const { get } = useAxios();
@@ -32,12 +32,12 @@ export default props => {
   const resolveToken = async token => {
     setToken(token);
     if (token) {
-      setLocalStorageToken(token);
+      setLocalStorage({ key: 'token', value: token });
       await authenticate();
     } else {
       setAuthenticated(false);
       setUser(null);
-      removeTokenFromLocalStorage();
+      removeFromLocalStorage();
 
       return;
     }

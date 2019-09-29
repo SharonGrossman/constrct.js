@@ -1,4 +1,4 @@
-import { getTokenFromLocalStorage } from './localStorage.resolver';
+import { getFromLocalStorage } from './localStorage.resolver';
 
 const GENERAL_ERROR_MESSAGE = 'Something has gone wrong, please try again';
 
@@ -42,7 +42,7 @@ export const resolveAuthError = ({ error, token, authenticated }) => {
   const UNAUTHORIZED_STATUSES = [401, 403, 500];
   const status = extractStatusCode(error);
 
-  const expiredToken = (token || authenticated) && !getTokenFromLocalStorage();
+  const expiredToken = (token || authenticated) && !getFromLocalStorage({ key: 'token' });
 
   if (UNAUTHORIZED_STATUSES.includes(status) && expiredToken) {
     return { expireToken: true };

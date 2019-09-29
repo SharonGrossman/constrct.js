@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getTokenFromLocalStorage } from '../../resolvers/localStorage.resolver';
+import { getFromLocalStorage } from '../../resolvers/localStorage.resolver';
 
 const instances = {
   api: axios.create({
@@ -7,7 +7,7 @@ const instances = {
     responseType: 'json',
     config: {
       headers: {
-        Authorization: `Bearer ${getTokenFromLocalStorage()}`
+        Authorization: `Bearer ${getFromLocalStorage({ key: 'token' })}`
       }
     }
   }),
@@ -19,7 +19,7 @@ const instances = {
 
 instances.api.interceptors.request.use(config => ({
   ...config,
-  headers: { ...config.headers, Authorization: `Bearer ${getTokenFromLocalStorage()}` }
+  headers: { ...config.headers, Authorization: `Bearer ${getFromLocalStorage({ key: 'token' })}` }
 }));
 
 export const resolveUrl = url => {
