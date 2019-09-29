@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Typography } from '@material-ui/core';
 import { Column } from 'mui-flex-layout';
+import { useParams } from 'react-router';
 import { useNotification } from '../../Providers/NotificationProvider';
 import { useAxios } from '../../Providers/AxiosProvider';
 
-export default ({
-  match: {
-    params: { id }
-  }
-}) => {
+export default () => {
   const [course, setCourse] = useState({});
   const { open } = useNotification();
   const { get } = useAxios();
+  const { id } = useParams();
 
   const fetchCourse = async () => {
     try {

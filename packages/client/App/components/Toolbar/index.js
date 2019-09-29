@@ -7,10 +7,10 @@ import {
 } from '@material-ui/icons';
 import styled from 'styled-components';
 import { Row } from 'mui-flex-layout';
+import { useHistory } from 'react-router';
 import AppIcon from '../AppIcon';
 import { useAuth } from '../../Providers/AuthProvider';
 import { useTheme } from '../../Providers/ThemeProvider';
-import { useHistory } from '../../Providers/HistoryProvider';
 
 const ClickableTitle = styled(Typography)`
   cursor: pointer;
@@ -22,14 +22,14 @@ const MarginAppIcon = styled(AppIcon)`
 export default () => {
   const { removeToken } = useAuth();
   const { toggleTheme } = useTheme();
-  const { navigate } = useHistory();
+  const { push } = useHistory();
 
   const handleLogout = () => {
     removeToken();
   };
 
   const handleTitleClick = () => {
-    navigate('/');
+    push('/');
   };
 
   const handleTheme = () => {
@@ -37,7 +37,7 @@ export default () => {
   };
 
   const handleProfile = () => {
-    navigate('/profile');
+    push('/profile');
   };
 
   return (

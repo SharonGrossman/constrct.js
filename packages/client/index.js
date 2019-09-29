@@ -1,16 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import HistoryProvider from './App/Providers/HistoryProvider';
 import './styles.css';
 import Router from './routes';
 
 const rootComponentRender = () =>
   render(
     <AppContainer>
-      <HistoryProvider>
-        <Router />
-      </HistoryProvider>
+      <Router />
     </AppContainer>,
     document.querySelector('#root')
   );

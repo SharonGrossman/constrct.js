@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Card, CardContent, CardActionArea, CardMedia, Typography } from '@material-ui/core';
 import { LaptopChromebook } from '@material-ui/icons';
 import { Row, Column } from 'mui-flex-layout';
-import { useHistory } from '../../../../Providers/HistoryProvider';
+import { useHistory } from 'react-router';
 
 const CourseCard = styled(Card)`
   height: 200px;
@@ -15,10 +15,10 @@ const CourseActionArea = styled(CardActionArea)`
 `;
 
 const Course = ({ course: { name, description, _id: id } }) => {
-  const { navigate } = useHistory();
+  const { push } = useHistory();
 
   const handleClick = () => {
-    navigate(`/course/${id}`);
+    push(`/course/${id}`);
   };
 
   return (

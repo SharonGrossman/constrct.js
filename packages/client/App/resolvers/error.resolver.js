@@ -17,7 +17,7 @@ const extractStatusCode = error => {
     status = responseStatus;
   }
 
-  return status || 500;
+  return status;
 };
 
 const extractErrorMessage = ({ error }) => {
@@ -29,7 +29,13 @@ const extractErrorMessage = ({ error }) => {
 };
 
 export const resolveError = ({ error }) => {
-  return extractErrorMessage({ error });
+  const status = extractStatusCode(error);
+
+  if (status < 500) {
+    return extractErrorMessage({ error });
+  }
+
+  return GENERAL_ERROR_MESSAGE;
 };
 
 export const resolveAuthError = ({ error, token, authenticated }) => {

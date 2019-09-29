@@ -1,15 +1,15 @@
 import React from 'react';
 import { Router, Switch, Redirect } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import App from './App';
 import ResolvedRoute from './App/components/ResolvedRoute';
 import shellRoutes from './App/Shell/routes';
 import exteriorRoutes from './App/Exterior/routes';
-import { useHistory } from './App/Providers/HistoryProvider';
 
 const routes = [...shellRoutes, ...exteriorRoutes];
 
 export default () => {
-  const { history } = useHistory();
+  const history = createBrowserHistory();
 
   return (
     <Router history={history}>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
 import { Column, Padded } from 'mui-flex-layout';
+import { useHistory } from 'react-router';
 import { useAuth } from '../../Providers/AuthProvider';
 import LinkButton from '../../components/LinkButton';
-import { useHistory } from '../../Providers/HistoryProvider';
 import { useAxios } from '../../Providers/AxiosProvider';
 import { useNotification } from '../../Providers/NotificationProvider';
 import LoginForm from './LoginForm';
@@ -11,7 +11,7 @@ import LoginForm from './LoginForm';
 export default () => {
   const { resolveToken } = useAuth();
   const { open } = useNotification();
-  const { navigate } = useHistory();
+  const { push } = useHistory();
   const { post } = useAxios();
 
   const handleLogin = async ({ email, password }, { setSubmitting }) => {
@@ -19,7 +19,7 @@ export default () => {
       const { token } = await post({ url: '/auth/local', body: { email, password } });
 
       await resolveToken(token);
-      navigate('/');
+      push('/');
     } catch (error) {
       setSubmitting(false);
 

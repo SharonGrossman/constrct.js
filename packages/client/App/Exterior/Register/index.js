@@ -1,17 +1,17 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
 import { Column, Padded } from 'mui-flex-layout';
+import { useHistory } from 'react-router';
 import { useAuth } from '../../Providers/AuthProvider';
 import { useAxios } from '../../Providers/AxiosProvider';
 import LinkButton from '../../components/LinkButton';
-import { useHistory } from '../../Providers/HistoryProvider';
 import { useNotification } from '../../Providers/NotificationProvider';
 import RegisterForm from './RegisterForm';
 
 export default () => {
   const { resolveToken } = useAuth();
   const { open } = useNotification();
-  const { navigate } = useHistory();
+  const { push } = useHistory();
   const { post } = useAxios();
 
   const handleRegister = async ({ email, password, name }, { setSubmitting }) => {
@@ -19,7 +19,7 @@ export default () => {
       const { token } = await post({ url: '/api/users', body: { email, password, name } });
 
       resolveToken(token);
-      navigate('/');
+      push('/');
     } catch (error) {
       setSubmitting(false);
       open({ message: error });
