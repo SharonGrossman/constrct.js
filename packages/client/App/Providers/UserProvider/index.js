@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import useAxios from '../../hooks/axios.hook';
+import { useApi } from '../../hooks/axios.hook';
 import {
   getFromLocalStorage,
   removeFromLocalStorage,
@@ -14,11 +14,10 @@ const UserContext = createContext(initialState);
 
 export default props => {
   const [user, setUser] = useState(null);
-  const { get } = useAxios();
+  const { get } = useApi();
 
   const fetchUser = async () => {
-    console.log('fetching user');
-    const data = await get({ url: '/api/users/me' });
+    const data = await get({ url: '/users/me' });
 
     setUser(data);
   };

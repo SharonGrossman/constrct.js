@@ -3,17 +3,17 @@ import { Typography } from '@material-ui/core';
 import { Column } from 'mui-flex-layout';
 import { useParams } from 'react-router';
 import { useNotification } from '../../Providers/NotificationProvider';
-import useAxios from '../../hooks/axios.hook';
+import { useApi } from '../../hooks/axios.hook';
 
 export default () => {
   const [course, setCourse] = useState({});
   const { open } = useNotification();
-  const { get } = useAxios();
+  const { get } = useApi();
   const { id } = useParams();
 
   const fetchCourse = async () => {
     try {
-      const course = await get({ url: `/api/courses/${id}` });
+      const course = await get({ url: `/courses/${id}` });
 
       setCourse(course);
     } catch (error) {

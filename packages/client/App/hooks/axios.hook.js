@@ -1,17 +1,25 @@
 import React from 'react';
+import axios from 'axios';
 import { useLoading } from '../Providers/LoadingProvider';
 import { resolveError } from '../resolvers/error.resolver';
-import { extractInstanceFromUrl } from '../resolvers/axios.resolver';
 
-const useAxios = () => {
+export const api = axios.create({
+  baseURL: '/api',
+  responseType: 'json'
+});
+
+export const auth = axios.create({
+  baseURL: '/auth',
+  responseType: 'json'
+});
+
+const useAxios = ({ instance }) => {
   const { setLoading } = useLoading();
 
   const get = async ({ url }) => {
     setLoading(true);
     try {
-      const [instance, apiUrl] = extractInstanceFromUrl(url);
-
-      const { data } = await instance.get(apiUrl);
+      const { data } = await instance.get(url);
 
       return data;
     } catch (error) {
@@ -26,9 +34,7 @@ const useAxios = () => {
   const post = async ({ url, body }) => {
     setLoading(true);
     try {
-      const [instance, apiUrl] = extractInstanceFromUrl(url);
-
-      const { data } = await instance.post(apiUrl, body);
+      const { data } = await instance.post(url, body);
 
       return data;
     } catch (error) {
@@ -43,4 +49,5 @@ const useAxios = () => {
   return { get, post };
 };
 
-export default useAxios;
+export const useApi = () => useAxios({ instance: api });
+export const useAuth = () => useAxios({ instance: auth });

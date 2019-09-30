@@ -29,6 +29,14 @@
       },
       "icons"
     ],
+    [
+      "babel-plugin-import",
+      {
+        "libraryName": "lodash",
+        "libraryDirectory": "",
+        "camel2DashComponentName": false
+      }
+    ],
     "@babel/plugin-transform-runtime",
     "react-hot-loader/babel"
   ]

@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Row } from 'mui-flex-layout';
 import { useNotification } from '../../../Providers/NotificationProvider';
-import useAxios from '../../../hooks/axios.hook';
+import { useApi } from '../../../hooks/axios.hook';
 import Course from './Course';
 
 export default () => {
   const [courses, setCourses] = useState([]);
-  const { get } = useAxios();
+  const { get } = useApi();
   const { open } = useNotification();
 
   const fetchCourses = async () => {
     try {
-      const courses = await get({ url: '/api/courses' });
+      const courses = await get({ url: '/courses' });
 
       setCourses(courses);
     } catch (error) {

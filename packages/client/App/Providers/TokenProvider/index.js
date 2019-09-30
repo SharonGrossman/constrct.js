@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useUser } from '../UserProvider';
-import { api } from '../../resolvers/axios.resolver';
+import { api } from '../../hooks/axios.hook';
 import { generalizeError } from '../../resolvers/error.resolver';
 import {
   getFromLocalStorage,
@@ -21,7 +21,6 @@ export default props => {
   const resolveToken = async token => {
     if (token) {
       setLocalStorage({ key: 'token', value: token });
-      console.log(token);
       await fetchUser();
 
       return;

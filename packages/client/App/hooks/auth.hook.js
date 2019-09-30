@@ -2,14 +2,15 @@ import React from 'react';
 import { useToken } from '../Providers/TokenProvider';
 import { useUser } from '../Providers/UserProvider';
 import { resolveError } from '../resolvers/error.resolver';
-import useAxios from './axios.hook';
+import { useApi, useAuth } from './axios.hook';
 
-const useAuth = () => {
+const useAuthActions = () => {
   const { setToken, removeToken } = useToken();
-  const { post } = useAxios();
+  const { post: authPost } = useAuth();
+  const { post: apiPost } = useApi();
 
   const login = async ({ email, password }) => {
-    const { token } = await post({ url: '/auth/local', body: { email, password } });
+    const { token } = await authPost({ url: '/local', body: { email, password } });
 
     setToken(token);
   };
@@ -19,7 +20,7 @@ const useAuth = () => {
   };
 
   const register = async ({ email, password, name }) => {
-    const { token } = await post({ url: '/api/users', body: { email, password, name } });
+    const { token } = await apiPost({ url: '/users', body: { email, password, name } });
 
     setToken(token);
   };
@@ -27,4 +28,4 @@ const useAuth = () => {
   return { login, logout, register };
 };
 
-export default useAuth;
+export default useAuthActions;
