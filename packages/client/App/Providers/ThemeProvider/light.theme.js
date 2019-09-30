@@ -1,10 +1,9 @@
-import { blue, grey, pink } from '@material-ui/core/colors';
+import { indigo, grey, pink, blue } from '@material-ui/core/colors';
 import { darken } from '@material-ui/core/styles';
 
-const { 700: LIGHT_PRIMARY_MAIN } = blue;
-const LIGHT_SECONDARY_MAIN = darken(pink.A400, 0.1);
+const { 300: LIGHT_PRIMARY_MAIN } = indigo;
+const { A100: LIGHT_SECONDARY_MAIN } = blue;
 const LIGHT_BACKGROUND = '#fff';
-const { 100: LIGHT_APPBAR } = grey;
 
 export default {
   palette: {
@@ -17,7 +16,6 @@ export default {
     }
   },
   background: {
-    default: LIGHT_BACKGROUND,
-    level1: LIGHT_APPBAR
+    default: LIGHT_BACKGROUND
   }
 };

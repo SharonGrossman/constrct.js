@@ -1,7 +1,7 @@
 import { blue, grey, pink } from '@material-ui/core/colors';
 
-const { 200: DARK_PRIMARY_MAIN } = blue;
-const { 200: DARK_SECONDARY_MAIN } = pink;
+const { 600: DARK_PRIMARY_MAIN } = grey;
+const { 800: DARK_SECONDARY_MAIN } = grey;
 const { 900: DARK_BACKGROUND } = grey;
 
 export default {
