@@ -1,52 +1,29 @@
-import { getFromLocalStorage } from './localStorage.resolver';
+import { has } from 'lodash';
 
 const GENERAL_ERROR_MESSAGE = 'Something has gone wrong, please try again';
+const GENERAL_ERROR_STATUS_THRESHOLD = 500;
+const DEFAULT_MISSING_STATUS = 500;
+
+export const generalizeError = ({ error }) => ({ ...error, general: true });
 
 const extractStatusCode = error => {
-  let status;
+  const hasResponseStatus = has(error, 'response.status');
+  const hasStatus = has(error, 'status');
 
-  if (error.response) {
-    const {
-      response: { status: responseStatus }
-    } = error;
-
-    status = responseStatus;
-  } else if (error.status) {
-    const { status: responseStatus } = error;
-
-    status = responseStatus;
-  }
-
-  return status;
-};
-
-const extractErrorMessage = ({ error }) => {
-  if (error.general || !error.response) {
-    return GENERAL_ERROR_MESSAGE;
-  }
-
-  return error.response.data.message;
+  return hasResponseStatus
+    ? error.response.status
+    : hasStatus
+    ? error.status
+    : DEFAULT_MISSING_STATUS;
 };
 
 export const resolveError = ({ error }) => {
   const status = extractStatusCode(error);
+  const hasResponseMessage = has(error, 'response.data.message');
 
-  if (status < 500) {
-    return extractErrorMessage({ error });
+  if (error.general || (!hasResponseMessage && status >= GENERAL_ERROR_STATUS_THRESHOLD)) {
+    return GENERAL_ERROR_MESSAGE;
   }
 
-  return GENERAL_ERROR_MESSAGE;
-};
-
-export const resolveAuthError = ({ error, token, user }) => {
-  const UNAUTHORIZED_STATUSES = [401, 403, 500];
-  const status = extractStatusCode(error);
-
-  const expiredToken = (token || user) && !getFromLocalStorage({ key: 'token' });
-
-  if (UNAUTHORIZED_STATUSES.includes(status) && expiredToken) {
-    return { expireToken: true };
-  }
-
-  return { expireToken: false };
+  return error.response.data.message;
 };

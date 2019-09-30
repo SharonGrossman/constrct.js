@@ -17,6 +17,7 @@ export default props => {
   const { get } = useAxios();
 
   const fetchUser = async () => {
+    console.log('fetching user');
     const data = await get({ url: '/api/users/me' });
 
     setUser(data);

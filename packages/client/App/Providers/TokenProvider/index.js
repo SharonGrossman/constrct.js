@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useUser } from '../UserProvider';
-import { resolveAuthError } from '../../resolvers/error.resolver';
 import { api } from '../../resolvers/axios.resolver';
+import { generalizeError } from '../../resolvers/error.resolver';
 import {
   getFromLocalStorage,
   removeFromLocalStorage,
@@ -16,12 +16,12 @@ const TokenContext = createContext(initialState);
 
 export default props => {
   const [token, setToken] = useState(getFromLocalStorage({ key: 'token' }));
-  const { fetchUser, user, removeUser } = useUser();
+  const { fetchUser, removeUser } = useUser();
 
   const resolveToken = async token => {
-    setToken(token);
     if (token) {
       setLocalStorage({ key: 'token', value: token });
+      console.log(token);
       await fetchUser();
 
       return;
@@ -33,19 +33,17 @@ export default props => {
 
   const removeToken = () => setToken(null);
 
-  const handleResponseError = error => {
-    const { expireToken } = resolveAuthError({ error, token, user });
-
-    if (expireToken) {
+  const handleForceLogout = error => {
+    if (token && !getFromLocalStorage({ key: 'token' })) {
       removeToken();
-      error = { ...error, general: true };
+      error = generalizeError({ error });
     }
 
     throw error;
   };
 
   const initializeInterceptors = () => {
-    api.interceptors.response.use(response => response, handleResponseError);
+    api.interceptors.response.use(response => response, handleForceLogout);
 
     api.interceptors.request.use(config => ({
       ...config,
@@ -57,20 +55,15 @@ export default props => {
   };
 
   useEffect(() => {
-    resolveToken(token);
-  }, [token]);
-
-  useEffect(() => {
     initializeInterceptors();
     resolveToken(token);
-  }, []);
+  }, [token]);
 
   return (
     <TokenContext.Provider
       value={{
         token,
         setToken,
-        resolveToken,
         removeToken
       }}
       {...props}

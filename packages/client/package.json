@@ -19,6 +19,7 @@
     "history": "^4.10.1",
     "jss": "^10.0.0",
     "jss-rtl": "^0.3.0",
+    "lodash": "^4.17.15",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-hot-loader": "^4.12.14",
