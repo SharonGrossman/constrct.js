@@ -1,0 +1,15 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "globals": {
+    "USER_API_URL": true,
+    "COURSE_API_URL": true,
+    "AUTH_API_URL": true
+  },
+  "parser": "babel-eslint",
+  "extends": ["sharongrossman/react", "plugin:prettier/recommended"]
+}

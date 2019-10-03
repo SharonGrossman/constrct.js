@@ -1,0 +1,35 @@
+{
+	"name": "express-validation-middleware",
+	"version": "0.0.0",
+	"description": "Express validation middleware",
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"scripts": {
+		"babel": "babel src -d dist -s",
+		"clean": "rimraf dist",
+		"precommit": "lint-staged",
+		"copy": "copyfiles package.json dist",
+		"build": "yarn clean && yarn babel && yarn copy",
+		"lint": "eslint src --fix"
+	},
+	"keywords": [
+		"joi",
+		"validation",
+		"middleware",
+		"express"
+	],
+	"author": "Sharon Grossman",
+	"license": "MIT",
+	"devDependencies": {
+		"@babel/cli": "^7.6.2",
+		"@babel/core": "^7.6.2",
+		"@babel/node": "^7.6.2",
+		"@babel/preset-env": "^7.6.2",
+		"copyfiles": "^2.1.1"
+	},
+	"dependencies": {
+		"http-errors": "^1.7.3",
+		"joi": "^14.3.1"
+	},
+	"private": true
+}

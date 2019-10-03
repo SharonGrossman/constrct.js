@@ -1,0 +1,39 @@
+{
+  "name": "express-auth",
+  "version": "0.0.0",
+  "description": "Express auth handler",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "scripts": {
+    "babel": "babel src -d dist -s",
+    "clean": "rimraf dist",
+    "precommit": "lint-staged",
+    "copy": "copyfiles package.json dist",
+    "build": "yarn clean && yarn babel && yarn copy",
+    "lint": "eslint src --fix"
+  },
+  "keywords": [
+    "auth",
+    "handler",
+    "express"
+  ],
+  "author": "Sharon Grossman",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/node": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "copyfiles": "^2.1.1"
+  },
+  "dependencies": {
+    "dotenv-extended": "^2.4.0",
+    "express-jwt": "^5.3.1",
+    "http-errors": "^1.7.3",
+    "jsonwebtoken": "^8.5.1",
+    "models": "^0.0.0",
+    "mongoose": "^5.7.1",
+    "pify": "^4.0.1"
+  },
+  "private": true
+}

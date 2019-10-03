@@ -1,0 +1,35 @@
+{
+  "name": "models",
+  "version": "0.0.0",
+  "description": "models",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "scripts": {
+    "babel": "babel src -d dist -s",
+    "clean": "rimraf dist",
+    "precommit": "lint-staged",
+    "copy": "copyfiles package.json dist",
+    "build": "yarn clean && yarn babel && yarn copy",
+    "lint": "eslint . --fix"
+  },
+  "keywords": [
+    "common",
+    "models"
+  ],
+  "author": "Sharon Grossman",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/node": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "copyfiles": "^2.1.1"
+  },
+  "dependencies": {
+    "email-address": "^1.2.2",
+    "mongoose": "^5.7.1",
+    "passport-local-mongoose": "^5.0.1",
+    "pify": "^4.0.1"
+  },
+  "private": true
+}

@@ -8,12 +8,16 @@
   "scripts": {
     "bootstrap": "lerna bootstrap --use-workspaces",
     "build": "yarn clean && lerna exec --parallel -- yarn build",
-    "dev": "lerna exec --parallel --no-bail -- yarn dev",
-    "clean": "lerna exec --parallel -- yarn clean",
+    "dev:web": "lerna exec --parallel --scope=web-* -- yarn dev",
+    "dev:server": "lerna exec --parallel --scope=*-api -- yarn dev",
+    "dev": "run-p dev:*",
+    "clean": "lerna exec --parallel --no-bail -- yarn clean",
     "lint": "lerna exec --parallel -- yarn lint",
     "lerna-publish": "lerna publish",
     "test": "yarn lint",
-    "prod": "yarn workspace server start"
+    "prod:web": "lerna exec --parallel --scope=web-* -- yarn start",
+    "prod:server": "lerna exec --parallel --scope=*-api -- yarn start",
+    "prod": "run-p prod:*"
   },
   "description": "A boilerplate application stack",
   "main": "index.js",
@@ -33,6 +37,7 @@
     "husky": "^3.0.7",
     "lerna": "^3.16.4",
     "lint-staged": "^9.4.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.18.2",
     "rimraf": "^3.0.0"
   }
