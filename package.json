@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "scripts": {
-    "bootstrap": "lerna bootstrap --use-workspaces",
+    "bootstrap": "lerna bootstrap --use-workspaces && yarn build",
     "build": "yarn clean && lerna exec --parallel -- yarn build",
     "dev:web": "lerna exec --parallel --scope=web-* -- yarn dev",
     "dev:server": "lerna exec --parallel --scope=*-api -- yarn dev",

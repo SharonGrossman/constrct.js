@@ -25,7 +25,9 @@ import connect from './mongoose';
   app.use(cookieParser());
   app.use(compression());
 
-  app.use(compression());
+  if (!inProduction) {
+    app.use(morgan('dev'));
+  }
 
   app.use('/', localRoute);
 

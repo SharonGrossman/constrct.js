@@ -13,7 +13,7 @@ export default () => {
   const { removeToken } = useToken();
 
   const login = async ({ email, password }) => {
-    const { token } = await post({ url: '/', body: { email, password } });
+    const { token } = await post({ url: '/admin', body: { email, password } });
 
     return token;
   };
