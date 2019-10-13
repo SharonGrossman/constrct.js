@@ -14,7 +14,7 @@ const TokenContext = createContext(initialState);
 
 export default props => {
   const [token, setToken] = useState(getFromLocalStorage({ key: 'token' }));
-  const { fetchUser, removeUser, user } = useUser();
+  const { fetchUser, removeUser } = useUser();
 
   const resolveToken = async token => {
     if (token) {

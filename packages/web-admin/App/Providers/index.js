@@ -3,7 +3,6 @@ import TokenProvider from './TokenProvider';
 import ThemeProvider from './ThemeProvider';
 import NotificationProvider from './NotificationProvider';
 import LoadingProvider from './LoadingProvider';
-import XhrProvider from './XhrProvider';
 import UserProvider from './UserProvider';
 
 export default ({ children }) => (
@@ -11,9 +10,7 @@ export default ({ children }) => (
     <LoadingProvider>
       <UserProvider>
         <TokenProvider>
-          <XhrProvider>
-            <NotificationProvider>{children}</NotificationProvider>
-          </XhrProvider>
+          <NotificationProvider>{children}</NotificationProvider>
         </TokenProvider>
       </UserProvider>
     </LoadingProvider>

@@ -1,11 +1,5 @@
-import React from 'react';
-import axios from 'axios';
-import { generateApi } from './generate-api';
-
-export const userClient = axios.create({
-  baseURL: `${USER_API_URL}/`,
-  responseType: 'json'
-});
+import { userClient } from '../../utilities/axios/clients';
+import { generateApi } from '../../utilities/axios/generate-api';
 
 export default () => {
   const { get, post } = generateApi({ instance: userClient });
