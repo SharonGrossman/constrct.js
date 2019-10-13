@@ -1,13 +1,5 @@
-import React from 'react';
-import axios from 'axios';
-import { generateApi } from './generate-api';
-
-const AUTH_REQUIRED = true;
-
-export const courseClient = axios.create({
-  baseURL: `${COURSE_API_URL}/`,
-  responseType: 'json'
-});
+import { generateApi } from '../../utilities/axios/generate-api';
+import { courseClient } from '../../utilities/axios/clients';
 
 export default () => {
   const { get, post } = generateApi({ instance: courseClient });

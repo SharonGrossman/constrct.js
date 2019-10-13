@@ -1,12 +1,6 @@
-import React from 'react';
-import axios from 'axios';
 import { useToken } from '../../Providers/TokenProvider';
-import { generateApi } from './generate-api';
-
-export const authClient = axios.create({
-  baseURL: `${AUTH_API_URL}/`,
-  responseType: 'json'
-});
+import { generateApi } from '../../utilities/axios/generate-api';
+import { authClient } from '../../utilities/axios/clients';
 
 export default () => {
   const { get, post } = generateApi({ instance: authClient });
