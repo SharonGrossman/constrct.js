@@ -4,9 +4,11 @@ const GENERAL_ERROR_MESSAGE = 'Something has gone wrong, please try again';
 const GENERAL_ERROR_STATUS_THRESHOLD = 500;
 const DEFAULT_MISSING_STATUS = 500;
 
-export const generalizeError = ({ error }) => ({ ...error, general: true });
+export const UNAUTHORIZED_STATUSES = [403, 401];
 
-const extractStatusCode = error => {
+export const generalizeError = error => ({ ...error, general: true });
+
+export const getErrorStatus = error => {
   const hasResponseStatus = has(error, 'response.status');
   const hasStatus = has(error, 'status');
 
@@ -17,8 +19,8 @@ const extractStatusCode = error => {
     : DEFAULT_MISSING_STATUS;
 };
 
-export const resolveError = ({ error }) => {
-  const status = extractStatusCode(error);
+export const getErrorMessage = error => {
+  const status = getErrorStatus(error);
   const hasResponseMessage = has(error, 'response.data.message');
 
   if (error.general || (!hasResponseMessage && status >= GENERAL_ERROR_STATUS_THRESHOLD)) {

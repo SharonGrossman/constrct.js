@@ -5,20 +5,20 @@ import { useHistory } from 'react-router';
 import LinkButton from '../../components/LinkButton';
 import useAuthApi from '../../hooks/api/auth.hook';
 import { useNotification } from '../../Providers/NotificationProvider';
-import { useToken } from '../../Providers/TokenProvider';
+import { useAuth } from '../../Providers/AuthProvider';
 import LoginForm from './LoginForm';
 
 export default () => {
   const { open } = useNotification();
   const { push } = useHistory();
   const { login } = useAuthApi();
-  const { resolveToken } = useToken();
+  const { setAuth } = useAuth();
 
   const handleLogin = async ({ email, password }, { setSubmitting }) => {
     try {
-      const token = await login({ email, password });
+      const data = await login({ email, password });
 
-      resolveToken(token);
+      await setAuth(data);
 
       push('/');
     } catch (error) {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
-import { useUser } from '../../Providers/UserProvider';
+import { useAuth } from '../../Providers/AuthProvider';
 
 export default () => {
-  const { user } = useUser();
+  const { user } = useAuth();
 
   return <Typography variant={'h3'}>{`Hello ${user.name.first} ${user.name.last}`}</Typography>;
 };

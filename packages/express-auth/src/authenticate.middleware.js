@@ -1,6 +1,5 @@
 import expressJwt from 'express-jwt';
 import pify from 'pify';
-import createError from 'http-errors';
 
 const validate = pify(expressJwt({ secret: process.env.SESSION_SECRET }));
 

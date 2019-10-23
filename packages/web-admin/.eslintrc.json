@@ -5,9 +5,13 @@
     "es6": true,
     "node": true
   },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "globals": {
-    "USER_API_URL": true,
-    "AUTH_API_URL": true
+    "USER_API_URL": true
   },
   "parser": "babel-eslint",
   "extends": ["sharongrossman/react", "plugin:prettier/recommended"]

@@ -1,8 +1,9 @@
-import { userClient } from '../../utilities/axios/clients';
 import { generateApi } from '../../utilities/axios/generate-api';
+import { userClient } from '../../utilities/axios/clients';
 
 export default () => {
-  const { get, post } = generateApi({ instance: userClient });
+  const { instance } = userClient;
+  const { get, post } = generateApi({ instance });
 
   const getMyself = async () => get({ url: '/me' });
   const getUser = async ({ id }) => get({ url: `/${id}` });

@@ -4,20 +4,20 @@ import { Column, Padded } from 'mui-flex-layout';
 import { useHistory } from 'react-router';
 import useAuthApi from '../../hooks/api/auth.hook';
 import { useNotification } from '../../Providers/NotificationProvider';
-import { useToken } from '../../Providers/TokenProvider';
+import { useAuth } from '../../Providers/AuthProvider';
 import LoginForm from './LoginForm';
 
 export default () => {
   const { open } = useNotification();
   const { push } = useHistory();
-  const { resolveToken } = useToken();
+  const { setAuth } = useAuth();
   const { login } = useAuthApi();
 
   const handleLogin = async ({ email, password }, { setSubmitting }) => {
     try {
-      const token = await login({ email, password });
+      const data = await login({ email, password });
 
-      resolveToken(token);
+      setAuth(data);
 
       push('/');
     } catch (error) {

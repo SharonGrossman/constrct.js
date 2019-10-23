@@ -1,19 +1,16 @@
-import { useToken } from '../../Providers/TokenProvider';
+import { useAuth } from '../../Providers/AuthProvider';
 import { generateApi } from '../../utilities/axios/generate-api';
 import { authClient } from '../../utilities/axios/clients';
 
 export default () => {
-  const { get, post } = generateApi({ instance: authClient });
-  const { removeToken } = useToken();
+  const { instance } = authClient;
+  const { post } = generateApi({ instance });
+  const { setLoggedOut } = useAuth();
 
-  const login = async ({ email, password }) => {
-    const { token } = await post({ url: '/admin', body: { email, password } });
-
-    return token;
-  };
+  const login = async ({ email, password }) => post({ url: '/admin', body: { email, password } });
 
   const logout = () => {
-    removeToken();
+    setLoggedOut();
   };
 
   return { login, logout };

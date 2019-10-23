@@ -1,5 +1,4 @@
 import createError from 'http-errors';
-import { signToken } from 'express-auth';
 import User from './user.model';
 
 export const index = () => User.find({});
@@ -12,23 +11,6 @@ export const show = async ({ params: { id } }) => {
   }
 
   return user;
-};
-
-export const create = async ({ body }, res) => {
-  const { name, email, password } = body;
-  const existingUser = await User.findOne({ email });
-
-  if (existingUser) {
-    throw createError(401, 'Email or Password are not valid');
-  }
-
-  const user = await User.create({ name, email, password });
-
-  if (!user) {
-    throw createError(400, 'Something went wrong, please try again');
-  }
-
-  return res.json({ token: signToken(user._id) });
 };
 
 export const update = async ({ user, params: { id }, body }) => {

@@ -17,8 +17,7 @@ export default env => {
       new HotModuleReplacementPlugin(),
       new CompressionPlugin(),
       new DefinePlugin({
-        USER_API_URL: JSON.stringify(process.env.USER_API_URL),
-        AUTH_API_URL: JSON.stringify(process.env.AUTH_API_URL)
+        USER_API_URL: JSON.stringify(process.env.USER_API_URL)
       })
     ],
     entry: {

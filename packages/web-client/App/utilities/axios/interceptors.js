@@ -1,34 +1,58 @@
-import { generalizeError, resolveError } from '../../resolvers/error.resolver';
-import { getFromLocalStorage } from '../../resolvers/localStorage.resolver';
-import { useToken } from '../../Providers/TokenProvider';
+import React, { useEffect, Fragment } from 'react';
+import {
+  generalizeError,
+  getErrorMessage,
+  getErrorStatus,
+  UNAUTHORIZED_STATUSES
+} from '../../resolvers/error.resolver';
+import { useAuth } from '../../Providers/AuthProvider';
 import clients from './clients';
 
-export default () => {
-  const { removeToken, token } = useToken();
+export default ({ children }) => {
+  const { setLoggedOut, getToken } = useAuth();
 
   const errorHandler = error => {
-    if (token && !getFromLocalStorage({ key: 'token' })) {
-      removeToken();
+    const status = getErrorStatus(error);
 
-      error = generalizeError({ error });
+    if (UNAUTHORIZED_STATUSES.includes(status)) {
+      error = generalizeError(error);
+      setLoggedOut();
     }
 
-    error = resolveError({ error });
+    error = getErrorMessage(error);
 
     throw error;
   };
 
-  clients.map(client => {
-    client.interceptors.response.use(response => response, errorHandler);
+  const authErrorHandler = error => {
+    error = getErrorMessage(error);
 
-    client.interceptors.request.use(config => ({
+    throw error;
+  };
+
+  const setAuthInterceptor = ({ instance }) =>
+    instance.interceptors.response.use(response => response, authErrorHandler);
+  const setApiInterceptor = ({ instance }) => {
+    instance.interceptors.response.use(response => response, errorHandler);
+    instance.interceptors.request.use(config => ({
       ...config,
       headers: {
         ...config.headers,
-        Authorization: `Bearer ${getFromLocalStorage({ key: 'token' })}`
+        Authorization: `Bearer ${getToken()}`
       }
     }));
+  };
 
-    return client;
-  });
+  const initialize = () =>
+    clients.map(({ instance, authRequired }) => {
+      const setInstanceInterceptor = authRequired ? setApiInterceptor : setAuthInterceptor;
+
+      return setInstanceInterceptor({ instance });
+    });
+
+  useEffect(() => {
+    initialize();
+  }, []);
+
+  return <>{children}</>;
 };

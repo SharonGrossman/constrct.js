@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
 
-export default (_id, expiresIn = '7d') => {
-  return jwt.sign({ _id }, process.env.SESSION_SECRET, { expiresIn });
-};
+export default (user, expiresIn = '7d') =>
+  jwt.sign(user.toJSON(), process.env.SESSION_SECRET, { expiresIn });

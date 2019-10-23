@@ -18,8 +18,7 @@ export default env => {
       new CompressionPlugin(),
       new DefinePlugin({
         USER_API_URL: JSON.stringify(process.env.USER_API_URL),
-        COURSE_API_URL: JSON.stringify(process.env.COURSE_API_URL),
-        AUTH_API_URL: JSON.stringify(process.env.AUTH_API_URL)
+        COURSE_API_URL: JSON.stringify(process.env.COURSE_API_URL)
       })
     ],
     entry: {

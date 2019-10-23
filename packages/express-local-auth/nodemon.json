@@ -1,5 +1,0 @@
-{
-  "watch": ["."],
-  "ext": "js",
-  "exec": "babel-node src/app.js"
-}
