@@ -1,5 +1,5 @@
 {
-	"name": "course-api",
+	"name": "@services/course-api",
 	"version": "0.0.0",
 	"description": "Express Course API server",
 	"main": "app.js",

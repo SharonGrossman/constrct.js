@@ -1,5 +1,5 @@
-# bae :baby_chick:
+# express-auth
 
 ## Description
 
-Part of the Monorepo - Express API <b>ba</b>ck<b>e</b>nd server
+Part of the Monorepo - Express authentication middlewares

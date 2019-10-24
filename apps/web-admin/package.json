@@ -1,7 +1,7 @@
 {
-  "name": "web-client",
+  "name": "@apps/web-admin",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "build": "webpack --env=production --define process.env.NODE_ENV=\"'production'\"",

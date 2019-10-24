@@ -1,5 +1,5 @@
-# bae :baby_chick:
+# serve-web
 
 ## Description
 
-Part of the Monorepo - Express API <b>ba</b>ck<b>e</b>nd server
+Part of the Monorepo - Self hosting an express server serving a web client
