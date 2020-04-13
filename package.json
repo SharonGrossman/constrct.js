@@ -32,7 +32,7 @@
     "eslint-config-sharongrossman": "^0.1.3",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-lodash": "^6.0.0",
-    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-unicorn": "^12.0.1",
     "husky": "^3.0.7",
     "lerna": "^3.16.4",
